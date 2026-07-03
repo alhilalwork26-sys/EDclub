@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Day — Our Travel Diary</title>
+<meta name="description" content="English Day — kumpulan cerita, jadwal, dan destinasi perjalanan grup English Day.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fugaz+One&family=Kalam:wght@400;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1 class="sr-only">English Day — Travel Diary</h1>
+
+<div class="scene">
+
+  <div class="board-wrap" id="boardWrap">
+    <div class="board-frame">
+      <div class="board-inner" id="boardInner">
+        <div class="light-beam"></div>
+
+        <!-- Title -->
+        <div class="pin title-pin" style="--l:30%; --t:20%; --w:40%;">
+          <div class="title-paper">
+            <span class="smiley-sticky" data-modal="joke">☺</span>
+            <div class="title-txt">ENGLISH<br>DAY</div>
+            <div class="title-txt title-txt--mirror">ENGLISH<br>DAY</div>
+          </div>
+        </div>
+
+        <!-- About sticky note -->
+        <button class="pin note note--yellow no-scale" style="--l:18%; --t:14%; --w:14%; --h:14.6%;" data-modal="about" aria-label="Tentang Kami">
+          <span class="pin-dot"></span>
+          <span class="handwrite">About</span>
+        </button>
+
+        <!-- Sketch note: destinations map -->
+        <button class="pin note note--paper" style="--l:20%; --t:33%; --w:15%; --h:18.9%;" data-modal="destinations" aria-label="Destinasi">
+          <svg viewBox="0 0 100 70" class="sketch-svg"><path d="M8 55 L30 15 L50 45 L68 10 L92 50" fill="none" stroke="#8a5a34" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30" cy="15" r="4" fill="#8a5a34"/><circle cx="68" cy="10" r="4" fill="#8a5a34"/></svg>
+          <span class="handwrite small">rute kita</span>
+        </button>
+
+        <!-- Sunglasses polaroid -->
+        <div class="pin polaroid" style="--l:6%; --t:4%; --w:13%; --h:18.4%;">
+          <div class="photo photo--sunset">
+            <svg viewBox="0 0 100 60"><circle cx="30" cy="30" r="18" fill="#2b2b2b"/><circle cx="70" cy="30" r="18" fill="#2b2b2b"/><rect x="46" y="26" width="8" height="6" fill="#2b2b2b"/></svg>
+          </div>
+        </div>
+
+        <!-- Itinerary poster -->
+        <button class="pin poster" style="--l:5%; --t:17%; --w:11%; --h:22.9%;" data-modal="itinerary" aria-label="Itinerary">
+          <div class="poster-face">
+            <span class="poster-title">TRIP<br>PLAN</span>
+            <span class="poster-sub">Next stop:<br>???</span>
+          </div>
+        </button>
+
+        <!-- Peeking photo behind docs -->
+        <div class="pin photo-peek" style="--l:9%; --t:42%; --w:11%; --h:24.5%;">
+          <div class="photo photo--group"><svg viewBox="0 0 100 70"><circle cx="35" cy="30" r="14" fill="#e8b07c"/><circle cx="65" cy="30" r="14" fill="#d99a68"/><rect x="20" y="42" width="30" height="22" rx="8" fill="#c96b4a"/><rect x="50" y="42" width="30" height="22" rx="8" fill="#4a7c96"/></svg></div>
+        </div>
+
+        <!-- Schedule / itinerary document -->
+        <button class="pin doc" style="--l:4%; --t:53%; --w:12%; --h:23.8%;" data-modal="schedule" aria-label="Jadwal Trip">
+          <div class="doc-face">
+            <span class="doc-line"></span><span class="doc-line"></span><span class="doc-line short"></span>
+            <span class="doc-line"></span><span class="doc-line short"></span>
+          </div>
+        </button>
+
+        <!-- Members polaroid left -->
+        <button class="pin polaroid clickable" style="--l:20%; --t:67%; --w:16%; --h:22.8%;" data-modal="members" aria-label="Kru English Day">
+          <div class="photo photo--crew1"><svg viewBox="0 0 100 70"><rect width="100" height="70" fill="#f4c869"/><circle cx="30" cy="35" r="16" fill="#d98f56"/><circle cx="66" cy="30" r="14" fill="#c96b4a"/><circle cx="30" cy="35" r="16" fill="none" stroke="#8a5a34" stroke-width="2"/></svg></div>
+          <span class="handwrite tiny">the crew</span>
+        </button>
+
+        <!-- Game / fun moment photo -->
+        <div class="pin photo-tilt" style="--l:31%; --t:73%; --w:15%; --h:17.4%;">
+          <div class="photo photo--fun"><svg viewBox="0 0 100 62"><rect width="100" height="62" fill="#e9dfc9"/><rect x="10" y="10" width="80" height="42" fill="#c9a15a"/><circle cx="35" cy="31" r="6" fill="#fff"/><circle cx="65" cy="31" r="6" fill="#fff"/><circle cx="35" cy="31" r="1.6" fill="#333"/><circle cx="65" cy="31" r="1.6" fill="#333"/></svg></div>
+        </div>
+
+        <!-- Next Trip event card -->
+        <button class="pin card card--event" style="--l:59.5%; --t:5%; --w:12%; --h:16.8%;" data-modal="event" aria-label="Next Trip">
+          <span class="card-label">NEXT<br>TRIP</span>
+        </button>
+
+        <!-- Rotating gallery frame -->
+        <button class="pin frame" style="--l:52%; --t:10%; --w:11%; --h:22.4%;" data-modal="gallery" id="galleryFrame" aria-label="Galeri Foto">
+          <div class="frame-face" id="frameFace"><svg viewBox="0 0 100 70"><rect width="100" height="70" fill="#f0e6d2"/><circle cx="50" cy="24" r="10" fill="#f2b134"/><path d="M0 60 L30 30 L55 50 L75 25 L100 55 L100 70 L0 70 Z" fill="#7fa06b"/></svg></div>
+        </button>
+
+        <!-- Passport reminder sticky -->
+        <button class="pin note note--pink" style="--l:75%; --t:14%; --w:7%; --h:12.1%;" data-modal="joke2" aria-label="Catatan">
+          <span class="handwrite tiny">jangan<br>lupa<br>paspor!</span>
+        </button>
+
+        <!-- Suitcase polaroid: destinations -->
+        <button class="pin polaroid clickable" style="--l:83%; --t:13%; --w:14%; --h:27.3%;" data-modal="destinations" aria-label="Destinasi">
+          <div class="photo photo--suitcase"><svg viewBox="0 0 100 80"><rect x="20" y="28" width="60" height="42" rx="6" fill="#c9683f"/><rect x="42" y="16" width="16" height="14" rx="3" fill="#c9683f"/><rect x="20" y="44" width="60" height="6" fill="#8a4326"/><circle cx="30" cy="70" r="6" fill="#3a2a20"/><circle cx="70" cy="70" r="6" fill="#3a2a20"/></svg></div>
+          <span class="handwrite tiny">packing time</span>
+        </button>
+
+        <!-- Postcard stack -->
+        <div class="pin postcards" style="--l:66%; --t:53%; --w:12%; --h:26.5%;">
+          <div class="postcard pc1"></div>
+          <div class="postcard pc2"></div>
+        </div>
+
+        <!-- Plane doodle -->
+        <div class="pin doodle" style="--l:73%; --t:51%; --w:7%; --h:10%;">
+          <svg viewBox="0 0 100 60"><path d="M10 40 L55 25 L90 12 L70 32 L92 44 L60 40 L45 52 L50 38 Z" fill="none" stroke="#8a3d2a" stroke-width="3" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- Members polaroid right -->
+        <button class="pin polaroid clickable" style="--l:84%; --t:50%; --w:14%; --h:27.3%;" data-modal="members" aria-label="Kru English Day">
+          <div class="photo photo--crew2"><svg viewBox="0 0 100 74"><rect width="100" height="74" fill="#9fc3d6"/><circle cx="38" cy="38" r="15" fill="#f4d3a3"/><circle cx="68" cy="34" r="13" fill="#e9b98a"/></svg></div>
+          <span class="handwrite tiny">on the road</span>
+        </button>
+
+        <!-- Feed the fish sticky -->
+        <button class="pin note note--pink" style="--l:80%; --t:78%; --w:7%; --h:11.1%;" id="feedFishBtn" aria-label="Kasih makan ikan">
+          <span class="handwrite tiny">kasih<br>makan<br>ikan</span>
+        </button>
+
+        <!-- Find us on -->
+        <div class="pin findus" style="--l:53%; --t:72%; --w:19%; --h:23.3%;">
+          <div class="findus-note">
+            <span class="handwrite circle-txt">Find Us on</span>
+            <div class="findus-legs">
+              <a class="soc" href="#" data-social="instagram" aria-label="Instagram">◎</a>
+              <a class="soc" href="#" data-social="tiktok" aria-label="TikTok">♪</a>
+              <a class="soc" href="#" data-social="youtube" aria-label="YouTube">▶</a>
+              <a class="soc" href="#" data-social="whatsapp" aria-label="WhatsApp">☎</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Phone -->
+    <button class="phone" data-modal="contact" aria-label="Contact Us">
+      <div class="phone-body">
+        <div class="phone-handset"></div>
+        <div class="phone-dial"></div>
+      </div>
+      <span class="phone-tag handwrite tiny">Contact<br>Us</span>
+    </button>
+
+    <!-- Fishbowl -->
+    <div class="fishbowl" id="fishbowl">
+      <div class="bowl-glass">
+        <div class="fish" id="fish">🐟</div>
+        <div class="bubbles" id="bubbles"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="desk"></div>
+  <p class="copyright">© 2026 English Day. All Rights Reserved.</p>
+</div>
+
+<!-- Modals -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" id="modalBox">
+    <button class="modal-close" id="modalClose" aria-label="Tutup">✕</button>
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
