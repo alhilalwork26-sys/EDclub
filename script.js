@@ -160,3 +160,81 @@ setInterval(() => {
   galleryIdx = (galleryIdx + 1) % galleryScenes.length;
   frameFace.innerHTML = galleryScenes[galleryIdx];
 }, 3200);
+
+// Drag-to-pan corkboard (desktop only; mobile uses the static grid layout)
+(function(){
+  const viewport = document.getElementById('boardViewport');
+  const canvas = document.getElementById('boardCanvas');
+  const dragHint = document.getElementById('dragHint');
+  if (!viewport || !canvas) return;
+
+  const isDesktop = () => window.matchMedia('(min-width: 901px)').matches;
+
+  let panX = 0, panY = 0;
+  let startX = 0, startY = 0;
+  let startPanX = 0, startPanY = 0;
+  let dragging = false;
+  let moved = false;
+
+  function clampPan(){
+    const vw = viewport.clientWidth;
+    const vh = viewport.clientHeight;
+    const cw = canvas.offsetWidth;
+    const ch = canvas.offsetHeight;
+    const minX = Math.min(0, vw - cw);
+    const minY = Math.min(0, vh - ch);
+    panX = Math.max(minX, Math.min(0, panX));
+    panY = Math.max(minY, Math.min(0, panY));
+  }
+
+  function applyPan(){
+    canvas.style.transform = `translate(${panX}px, ${panY}px)`;
+  }
+
+  viewport.addEventListener('pointerdown', (e) => {
+    if (!isDesktop()) return;
+    dragging = true;
+    moved = false;
+    startX = e.clientX;
+    startY = e.clientY;
+    startPanX = panX;
+    startPanY = panY;
+    viewport.classList.add('dragging');
+    viewport.setPointerCapture(e.pointerId);
+  });
+
+  viewport.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) {
+      moved = true;
+      if (dragHint) dragHint.classList.add('hide');
+    }
+    panX = startPanX + dx;
+    panY = startPanY + dy;
+    clampPan();
+    applyPan();
+  });
+
+  function endDrag(){
+    if (!dragging) return;
+    dragging = false;
+    viewport.classList.remove('dragging');
+  }
+  viewport.addEventListener('pointerup', endDrag);
+  viewport.addEventListener('pointercancel', endDrag);
+
+  // Swallow the click that follows a drag so pins don't pop their modal open
+  viewport.addEventListener('click', (e) => {
+    if (moved) {
+      e.stopPropagation();
+      e.preventDefault();
+      moved = false;
+    }
+  }, true);
+
+  window.addEventListener('resize', () => { clampPan(); applyPan(); });
+  clampPan();
+  applyPan();
+})();

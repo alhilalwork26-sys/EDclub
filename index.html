@@ -18,8 +18,10 @@
 
   <div class="board-wrap" id="boardWrap">
     <div class="board-frame">
-      <div class="board-inner" id="boardInner">
-        <div class="light-beam"></div>
+      <div class="board-viewport" id="boardViewport">
+        <div class="board-canvas" id="boardCanvas">
+          <div class="light-beam"></div>
+          <div class="board-panel" id="boardPanel">
 
         <!-- Title -->
         <div class="pin title-pin" style="--l:30%; --t:20%; --w:40%;">
@@ -137,6 +139,10 @@
           </div>
         </div>
 
+          </div>
+          <div class="canvas-hint" id="canvasHint">+ ruang untuk konten baru</div>
+        </div>
+        <div class="drag-hint" id="dragHint">🖐️ geser untuk jelajah papan</div>
       </div>
     </div>
 
