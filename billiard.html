@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Billiard — ED Club</title>
+  <meta name="description" content="Billiard bersama ED Club: bidik, pukul, dan tertawa bareng di meja hijau.">
+  <meta name="theme-color" content="#06150f">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:site_name" content="ED Club">
+  <meta property="og:title" content="Billiard bersama ED Club">
+  <meta property="og:description" content="Billiard bersama ED Club: bidik, pukul, dan tertawa bareng di meja hijau.">
+  <meta property="og:image" content="assets/images/hero.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="sport.css">
+</head>
+<body class="is-loading sp sp-billiard">
+
+  <div class="loader" aria-hidden="true">
+    <span class="loader__word"><span>English Day</span><span>Social Club<i>.</i></span></span>
+  </div>
+
+  <header class="nav">
+    <a class="logo" href="index.html#home" aria-label="ED Club">ED<span>Club</span></a>
+    <nav class="pill" aria-label="Utama">
+      <a class="pill__link" href="index.html#home">Home</a>
+      <a class="pill__link is-active" href="index.html#games">Games</a>
+      <a class="pill__link" href="index.html#about">Community</a>
+      <a class="pill__link" href="index.html#events">Events</a>
+      <a class="pill__link" href="index.html#join">Join</a>
+    </nav>
+    <button class="burger" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </header>
+
+  <div class="menu" id="menu">
+    <nav aria-label="Menu mobile">
+      <a href="index.html#home" style="--i:0">Home</a>
+      <a href="index.html#games" style="--i:1">Games</a>
+      <a href="index.html#about" style="--i:2">Community</a>
+      <a href="index.html#events" style="--i:3">Events</a>
+      <a href="index.html#join" style="--i:4">Join</a>
+    </nav>
+  </div>
+
+  <main>
+
+    <section class="bl-hero">
+      <div class="bl-head">
+        <div>
+          <p class="sp-eyebrow reveal" style="--d:.9s">Indoor · Presisi · Santai</p>
+          <h1 class="bl-title" aria-label="Billiard"><span class="line"><span class="line__in" style="--d:1s">Billiard<em>.</em></span></span></h1>
+        </div>
+        <div>
+          <p class="sp-lead reveal" style="--d:1.4s">Bidik, pukul, dan tertawa bareng di meja hijau. Dari sekadar iseng sampai taruhan traktir minum, semua level boleh ikut.</p>
+          <div class="sp-actions reveal" style="--d:1.6s">
+            <a class="sp-btn" href="index.html#join">Gabung main <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="sp-back" href="index.html#games">← Semua olahraga</a>
+          </div>
+        </div>
+      </div>
+      <div class="bl-frame"><div class="bl-felt"><canvas id="blTable" aria-label="Animasi bola billiard yang dipukul dan menyebar"></canvas></div></div>
+    </section>
+
+    <section class="sp-sec">
+      <span class="sp-eyebrow" data-reveal>Jenis permainan</span>
+      <h2 class="sp-h2" data-reveal>Pilih mejamu<em style="color:var(--acc);font-style:normal">.</em></h2>
+      <div class="bl-types"><article class="bl-type" data-reveal><span class="ball" style="--bc:#f4c21b">8</span><small>15 bola + putih</small><h3>8-Ball</h3><p>Pemain memilih kelompok bola solid atau stripes, memasukkan semuanya, lalu bola hitam nomor 8 paling akhir.</p></article><article class="bl-type" data-reveal><span class="ball" style="--bc:#f2791c">9</span><small>9 bola + putih</small><h3>9-Ball</h3><p>Bola harus dimainkan berurutan dari nomor terkecil. Siapa yang memasukkan bola 9 lebih dulu menang.</p></article><article class="bl-type" data-reveal><span class="ball" style="--bc:#d62b2b">1</span><small>15 merah + 6 warna</small><h3>Snooker</h3><p>Meja lebih besar. Masukkan bola merah lalu bola warna secara bergantian untuk mengumpulkan poin.</p></article></div>
+    </section>
+
+    <section class="sp-sec">
+      <span class="sp-eyebrow" data-reveal>Tips pemula</span>
+      <h2 class="sp-h2" data-reveal>Empat hal sebelum<br>memukul<em style="color:var(--acc);font-style:normal">.</em></h2>
+      <ol class="bl-tips">
+        <li data-reveal>Pegang stik dengan santai<span>Genggaman terlalu kuat membuat pukulan kaku. Biarkan stik meluncur lewat tangan belakang.</span></li>
+        <li data-reveal>Beri kapur sebelum memukul<span>Kapur membantu ujung stik mencengkeram bola putih supaya tidak meleset.</span></li>
+        <li data-reveal>Bidik dulu, baru pukul<span>Tentukan arah bola sasaran, lalu lakukan beberapa ayunan latihan sebelum menembak.</span></li>
+        <li data-reveal>Hormati giliran<span>Berdiri tenang saat lawan membidik. Biliar sama serunya dengan sopan santun di meja.</span></li>
+      </ol>
+      <dl class="sp-info" data-reveal>
+        <div><dt>Level</dt><dd>Semua level</dd></div>
+        <div><dt>Jadwal</dt><dd>Diumumkan di grup komunitas</dd></div>
+        <div><dt>Bawa</dt><dd>Stik pribadi (opsional), kapur, rasa sabar</dd></div>
+      </dl>
+    </section>
+
+
+    <section class="sp-sec">
+      <span class="sp-eyebrow" data-reveal>Kegiatan kita</span>
+      <h2 class="sp-h2" data-reveal>Malam di meja hijau<em style="color:var(--acc);font-style:normal">.</em></h2>
+      <div class="bl-gal" data-reveal>
+        <figure class="shot" style="--pos:50% 32%;--zoom:1"><img src="assets/images/billiard.webp" alt="Fokus membidik" loading="lazy"><figcaption>Fokus membidik</figcaption></figure>
+        <figure class="shot" style="--pos:25% 62%;--zoom:1.9"><img src="assets/images/billiard.webp" alt="Stik siap" loading="lazy"><figcaption>Stik siap</figcaption></figure>
+        <figure class="shot" style="--pos:45% 34%;--zoom:2.2"><img src="assets/images/billiard.webp" alt="Gaya sendiri" loading="lazy"><figcaption>Gaya sendiri</figcaption></figure>
+        <figure class="shot" style="--pos:55% 74%;--zoom:2.1"><img src="assets/images/billiard.webp" alt="Bola di meja" loading="lazy"><figcaption>Bola di meja</figcaption></figure>
+      </div>
+    </section>
+    <section class="sp-end">
+      <a class="sp-end__join" href="index.html#join" data-reveal><small>Ikut Billiard?</small><strong>Gabung<br>ED Club</strong><i>→</i></a>
+      <a class="sp-end__next" href="lari.html" data-reveal style="--d:.1s"><small>Olahraga berikutnya</small><strong>Lari</strong><i>→</i></a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="logo" href="index.html#home" aria-label="ED Club">ED<span>Club</span></a>
+        <p>All Games.<br>One Community.</p>
+      </div>
+      <nav class="footer__col" aria-label="Jelajahi">
+        <h4>Explore</h4>
+        <a href="index.html#about">Community</a>
+        <a href="index.html#games">Games</a>
+        <a href="index.html#events">Events</a>
+        <a href="index.html#join">Join</a>
+      </nav>
+      <nav class="footer__col" aria-label="Sosial media">
+        <h4>Social</h4>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">WhatsApp</a>
+      </nav>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@edclub.id">hello@edclub.id</a>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <span>© 2026 ED Club</span>
+      <a href="#" class="totop">Kembali ke atas ↑</a>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+  <script src="sport.js"></script>
+  <script src="billiard.js"></script>
+</body>
+</html>
