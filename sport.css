@@ -555,7 +555,7 @@ body:not(.is-loading) .bl-frame { opacity: 1; transform: none; }
 
 /* Dua orang angkat beban */
 .gm-lift { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 32px; }
-.gm-stage { position: relative; overflow: hidden; background: #111; border: 3px solid #fff; box-shadow: 10px 10px 0 var(--acc); padding: 18px 18px 70px; }
+.gm-stage { position: relative; overflow: hidden; background: #111; border: 3px solid #fff; box-shadow: 10px 10px 0 var(--acc); padding: 18px 18px 22px; }
 .gm-stage--b { box-shadow: 10px 10px 0 var(--lime); }
 .gm-stage__top { display: flex; justify-content: space-between; align-items: center; font-family: 'Anton', sans-serif; text-transform: uppercase; font-size: clamp(20px, 2.4vw, 30px); line-height: 1; }
 .gm-stage__rep { font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: .14em; opacity: .75; }
