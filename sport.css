@@ -611,3 +611,7 @@ body:not(.is-loading) .lb-photo { transform: rotate(3deg); opacity: 1; }
   .lb-gal .shot:nth-child(1) { grid-row: auto; grid-column: span 2; }
   .lb-gal .shot:nth-child(4) { grid-column: auto; }
 }
+
+/* Dua pemain padel di lapangan berdinding kaca */
+.pd-arena { margin-top: clamp(24px, 4vw, 48px); border-radius: 28px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 24px 60px rgba(0,0,0,.45); }
+.pd-arena svg { display: block; width: 100%; height: auto; }
