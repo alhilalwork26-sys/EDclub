@@ -695,3 +695,40 @@ body:not(.is-loading) .run-hero__photo { clip-path: inset(0 0 0 0 round 36px); }
 @media (max-width: 640px) {
 }
 
+
+/* Halaman Bali */
+#bmap { position: absolute; inset: 0; }
+.bali-map .run-map__frame { height: clamp(480px, 80vh, 800px); }
+.bpin { position: relative; width: 0; height: 0; }
+.bpin i {
+  position: absolute; left: -15px; top: -15px; width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center; background: var(--lime); color: var(--ink);
+  font-family: 'Anton', sans-serif; font-style: normal; font-size: 15px; border: 3px solid var(--ink);
+  box-shadow: 0 0 0 2px var(--lime), 0 4px 14px rgba(0, 0, 0, .55);
+}
+.bpin span {
+  position: absolute; left: 22px; top: -13px; white-space: nowrap; font-size: 12px; font-weight: 600;
+  padding: 6px 12px; border-radius: 999px; background: var(--white); color: var(--ink);
+}
+.bali-stops { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px; }
+.stop {
+  position: relative; isolation: isolate; overflow: hidden; width: 100%; min-height: 320px; text-align: left; cursor: pointer;
+  display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 22px; color: var(--white);
+  border: 1px solid transparent; border-radius: 28px; font: inherit;
+  background: radial-gradient(120% 90% at 20% 0%, var(--c1), var(--c2) 72%);
+  transition: transform .5s var(--ease), border-color .3s, box-shadow .4s;
+}
+.stop::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(0,0,0,.62), transparent 62%); }
+.stop:hover { transform: translateY(-6px); }
+.stop.is-active { border-color: var(--lime); box-shadow: 0 0 0 4px rgba(212, 255, 63, .22); }
+.stop .tag--glass { top: 18px; left: 18px; }
+.stop__no {
+  position: absolute; right: 16px; top: 36px; z-index: -1; font-family: 'Anton', sans-serif; line-height: 1;
+  font-size: clamp(80px, 8vw, 120px); color: rgba(255, 255, 255, .22);
+}
+.stop h3 { font-size: clamp(22px, 2.2vw, 28px); font-weight: 500; letter-spacing: -.01em; }
+.stop p { font-size: 14px; line-height: 1.5; opacity: .88; }
+.stop__leg { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; opacity: .7; margin-top: 4px; }
+.bali-note { margin-top: 18px; font-size: 13px; opacity: .55; }
+@media (max-width: 1000px) { .bali-stops { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .bali-stops { grid-template-columns: 1fr; } .stop { min-height: 280px; } }

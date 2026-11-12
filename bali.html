@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tahun Baru di Bali — ED Club</title>
+  <meta name="description" content="Tahun Baru di Bali bersama ED Club. Datang, siapkan sepatu, dan temukan ritmemu.">
+  <meta name="theme-color" content="#0b0d0a">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:site_name" content="ED Club">
+  <meta property="og:title" content="Tahun Baru di Bali bersama ED Club">
+  <meta property="og:description" content="Liburan Tahun Baru di Bali, 30 Desember 2026: Uluwatu, Kuta, Kintamani, dan Ubud di peta 3D.">
+  <meta property="og:image" content="assets/images/hero.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="is-loading run-page bali-page">
+
+  <div class="loader" aria-hidden="true">
+    <span class="loader__word"><span>English Day</span><span>Social Club<i>.</i></span></span>
+  </div>
+
+  <header class="nav">
+    <a class="logo" href="index.html#home" aria-label="ED Club">ED<span>Club</span></a>
+    <nav class="pill" aria-label="Utama">
+      <a class="pill__link" href="index.html#home">Home</a>
+      <a class="pill__link" href="index.html#games">Games</a>
+      <a class="pill__link" href="index.html#about">Community</a>
+      <a class="pill__link is-active" href="index.html#events">Events</a>
+      <a class="pill__link" href="index.html#join">Join</a>
+    </nav>
+    <button class="burger" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </header>
+
+  <div class="menu" id="menu">
+    <nav aria-label="Menu mobile">
+      <a href="index.html#home" style="--i:0">Home</a>
+      <a href="index.html#games" style="--i:1">Games</a>
+      <a href="index.html#about" style="--i:2">Community</a>
+      <a href="index.html#events" style="--i:3">Events</a>
+      <a href="index.html#join" style="--i:4">Join</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="run-hero">
+      <svg class="run-track" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M-40 760 C 300 620, 520 880, 860 700 S 1300 520, 1500 640"/>
+        <path d="M-40 820 C 320 690, 540 940, 880 770 S 1320 590, 1500 710"/>
+        <path d="M-40 880 C 340 760, 560 1000, 900 840 S 1340 660, 1500 780"/>
+      </svg>
+
+      <div class="run-hero__text">
+        <p class="eyebrow reveal" style="--d:.9s">Liburan Tahun Baru</p>
+        <h1 class="headline">
+          <span class="line"><span class="line__in" style="--d:1s">Tahun baru</span></span>
+          <span class="line"><span class="line__in" style="--d:1.12s">di <em>Bali.</em></span></span>
+        </h1>
+        <p class="run-hero__lead reveal" style="--d:1.4s">Empat tempat, satu pulau, dan satu kru. Rayakan pergantian tahun bersama teman-teman ED Club di pulau dewata.</p>
+        <div class="run-hero__cta reveal" style="--d:1.55s">
+          <a class="btn" href="#peta">Lihat peta 3D <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+          <a class="run-back" href="index.html#events">← Semua event</a>
+        </div>
+      </div>
+
+      <figure class="run-hero__photo">
+        <img src="assets/images/liburan.webp" alt="Empat anggota ED Club berfoto bersama dengan latar langit biru" style="object-position:50% 80%" fetchpriority="high">
+        <figcaption class="run-chip reveal" style="--d:1.9s">
+          <span class="run-chip__dot"></span>
+          <span>Berangkat<strong>30 Desember 2026</strong></span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="run-ticker" aria-hidden="true">
+      <div class="run-ticker__track" id="ticker">
+        <span>Uluwatu</span><span>Kuta</span><span>Kintamani</span><span>Ubud</span><span>Uluwatu</span><span>Kuta</span><span>Kintamani</span><span>Ubud</span><span>Uluwatu</span><span>Kuta</span><span>Kintamani</span><span>Ubud</span>
+      </div>
+    </section>
+
+    <section class="run-event" id="trip">
+      <div class="run-event__card" data-reveal>
+        <div class="run-event__main">
+          <span class="tag tag--dark">Liburan</span>
+          <h2>Tahun Baru<br>di Bali</h2>
+          <p>Liburan bareng ke empat destinasi favorit di Bali. Dari tebing dan pantai di selatan sampai dataran tinggi dan budaya di tengah pulau.</p>
+        </div>
+        <dl class="run-event__facts">
+          <div><dt>Tanggal</dt><dd>30 Des 2026</dd></div>
+          <div><dt>Lokasi</dt><dd>Bali</dd></div>
+          <div><dt>Destinasi</dt><dd>4 Tempat</dd></div>
+        </dl>
+        <a class="btn btn--dark run-event__btn" href="index.html#join">Gabung Liburan <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+    </section>
+
+    <section class="run-map bali-map" id="peta">
+      <div class="run-map__head" data-reveal>
+        <div>
+          <span class="eyebrow-s">Peta 3D</span>
+          <h2>Empat tempat,<br>satu pulau<em>.</em></h2>
+        </div>
+        <dl class="run-map__stats">
+          <div><dt>Destinasi</dt><dd>4 tempat</dd></div>
+          <div><dt>Jarak total</dt><dd id="baliTotal">±136 km</dd></div>
+          <div><dt>Moda</dt><dd>Mobil</dd></div>
+        </dl>
+      </div>
+
+      <div class="run-map__frame" id="baliFrame" data-reveal>
+        <div id="bmap" aria-label="Peta 3D pulau Bali dengan empat destinasi wisata"></div>
+        <div class="map-hud">
+          <span class="map-hud__label" id="baliStep">Pulau Bali</span>
+          <strong id="baliName">Uluwatu</strong>
+          <i class="map-hud__bar"><b id="baliBar"></b></i>
+        </div>
+        <div class="map-ctrl">
+          <button class="map-btn" id="baliReplay" type="button">↻ <span>Putar tur</span></button>
+          <button class="map-btn" id="baliOverview" type="button">Lihat seluruh pulau</button>
+        </div>
+      </div>
+
+      <ol class="bali-stops" data-reveal>
+        <li><button class="stop" type="button" data-stop="0" style="--c1:#ff9a5c;--c2:#4a1d3a">
+          <span class="stop__no">01</span>
+          <span class="tag tag--glass">Tebing &amp; Sunset</span>
+          <h3>Uluwatu</h3>
+          <p>Pura di atas tebing karang di ujung selatan Bali. Tempat terbaik untuk melihat matahari terbenam dan menonton tari Kecak.</p>
+          <span class="stop__leg" data-leg="0"></span>
+        </button></li>
+        <li><button class="stop" type="button" data-stop="1" style="--c1:#3fc6e0;--c2:#0b3a5a">
+          <span class="stop__no">02</span>
+          <span class="tag tag--glass">Pantai</span>
+          <h3>Kuta</h3>
+          <p>Pantai berpasir dengan ombak yang ramah untuk belajar berselancar, deretan kafe, dan suasana sore yang ramai.</p>
+          <span class="stop__leg" data-leg="1"></span>
+        </button></li>
+        <li><button class="stop" type="button" data-stop="2" style="--c1:#7fb98a;--c2:#17352a">
+          <span class="stop__no">03</span>
+          <span class="tag tag--glass">Dataran Tinggi</span>
+          <h3>Kintamani</h3>
+          <p>Dataran tinggi sejuk dengan pemandangan Gunung dan Danau Batur. Cocok untuk sarapan sambil menikmati kaldera.</p>
+          <span class="stop__leg" data-leg="2"></span>
+        </button></li>
+        <li><button class="stop" type="button" data-stop="3" style="--c1:#c6f432;--c2:#1f5a2a">
+          <span class="stop__no">04</span>
+          <span class="tag tag--glass">Budaya &amp; Alam</span>
+          <h3>Ubud</h3>
+          <p>Pusat seni dan budaya di tengah Bali, dikelilingi sawah terasering, hutan, galeri, dan kafe-kafe tenang.</p>
+          <span class="stop__leg" data-leg="3"></span>
+        </button></li>
+      </ol>
+      <p class="bali-note">Jarak dan rute berupa perkiraan perjalanan mobil, di luar macet. Klik sebuah destinasi untuk terbang ke lokasinya.</p>
+    </section>
+
+    <section class="cta" id="join-bali">
+      <div class="cta__card" data-reveal>
+        <img class="cta__img" src="assets/images/liburan.webp" alt="" style="object-position:50% 70%" loading="lazy">
+        <div class="cta__body">
+          <h2 class="cta__title"><span>Ikut ke Bali?</span><em>Kursimu menunggu.</em></h2>
+          <p>Gabung ED Club dan ikut merayakan tahun baru bersama kami di Bali.</p>
+          <a class="btn" href="index.html#join">Gabung ED Club <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="logo" href="index.html#home" aria-label="ED Club">ED<span>Club</span></a>
+        <p>All Games.<br>One Community.</p>
+      </div>
+      <nav class="footer__col" aria-label="Jelajahi">
+        <h4>Explore</h4>
+        <a href="index.html#about">Community</a>
+        <a href="index.html#games">Games</a>
+        <a href="index.html#events">Events</a>
+        <a href="index.html#join">Join</a>
+      </nav>
+      <nav class="footer__col" aria-label="Sosial media">
+        <h4>Social</h4>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">WhatsApp</a>
+      </nav>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@edclub.id">hello@edclub.id</a>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <span>© 2026 ED Club</span>
+      <a href="#" class="totop">Kembali ke atas ↑</a>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+  <script src="lari.js"></script>
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="assets/route-bali.js"></script>
+  <script src="bali-map.js"></script>
+</body>
+</html>
