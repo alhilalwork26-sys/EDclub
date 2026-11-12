@@ -67,7 +67,7 @@ document.querySelectorAll('[data-loop]').forEach((el) => {
 });
 
 // Animasi SVG (SMIL) dihentikan jika pengguna memilih gerakan minimal
-if (reduce) document.querySelectorAll('.gm-stage svg, .bd-court svg, .lb-beach svg, .pd-arena svg, .lr-scene svg').forEach((s) => s.pauseAnimations && s.pauseAnimations());
+if (reduce) document.querySelectorAll('.gm-stage svg, .bd-court svg, .lb-beach svg, .pd-arena svg, .lr-scene svg, .bl-solo svg').forEach((s) => s.pauseAnimations && s.pauseAnimations());
 
 // Parallax dan garis yang tergambar saat scroll
 const parallax = [...document.querySelectorAll('[data-parallax]')];
