@@ -28,14 +28,16 @@ body.is-loading { overflow: hidden; }
   transition: transform 1s var(--ease) .1s;
 }
 .loader__word {
-  font-family: 'Anton', sans-serif;
-  font-size: clamp(64px, 14vw, 160px);
-  letter-spacing: .02em;
-  animation: pulse 1s var(--ease) infinite alternate;
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: .08em;
+  font-family: 'Anton', sans-serif; text-transform: uppercase;
+  font-size: clamp(44px, 11vw, 132px); line-height: .98; letter-spacing: .02em;
 }
+.loader__word span { display: block; overflow: hidden; }
+.loader__word span { animation: loader-rise 1s var(--ease) both; }
+.loader__word span:nth-child(2) { animation-delay: .12s; }
 .loader__word i { color: var(--lime); font-style: normal; }
 body:not(.is-loading) .loader { transform: translateY(-100%); }
-@keyframes pulse { from { opacity: .35; } to { opacity: 1; } }
+@keyframes loader-rise { from { transform: translateY(110%); } to { transform: none; } }
 
 /* Nav */
 .nav {
