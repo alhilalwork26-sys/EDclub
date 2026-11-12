@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lari — ED Club</title>
+  <meta name="description" content="Lari bareng ED Club. Datang, siapkan sepatu, dan temukan ritmemu.">
+  <meta name="theme-color" content="#0b0d0a">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:site_name" content="ED Club">
+  <meta property="og:title" content="Lari bareng ED Club">
+  <meta property="og:description" content="ED Fun Run Vol. 1 dan rute lari 3D di Surabaya. Datang, siapkan sepatu, temukan ritmemu.">
+  <meta property="og:image" content="assets/images/hero.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="is-loading run-page">
+
+  <div class="loader" aria-hidden="true">
+    <span class="loader__word">ED<i>.</i></span>
+  </div>
+
+  <header class="nav">
+    <a class="logo" href="index.html#home" aria-label="ED Club">ED<span>Club</span></a>
+    <nav class="pill" aria-label="Utama">
+      <a class="pill__link" href="index.html#home">Home</a>
+      <a class="pill__link is-active" href="index.html#games">Games</a>
+      <a class="pill__link" href="index.html#about">Community</a>
+      <a class="pill__link" href="index.html#events">Events</a>
+      <a class="pill__link" href="index.html#join">Join</a>
+    </nav>
+    <button class="burger" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </header>
+
+  <div class="menu" id="menu">
+    <nav aria-label="Menu mobile">
+      <a href="index.html#home" style="--i:0">Home</a>
+      <a href="index.html#games" style="--i:1">Games</a>
+      <a href="index.html#about" style="--i:2">Community</a>
+      <a href="index.html#events" style="--i:3">Events</a>
+      <a href="index.html#join" style="--i:4">Join</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="run-hero">
+      <svg class="run-track" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M-40 760 C 300 620, 520 880, 860 700 S 1300 520, 1500 640"/>
+        <path d="M-40 820 C 320 690, 540 940, 880 770 S 1320 590, 1500 710"/>
+        <path d="M-40 880 C 340 760, 560 1000, 900 840 S 1340 660, 1500 780"/>
+      </svg>
+
+      <div class="run-hero__text">
+        <p class="eyebrow reveal" style="--d:.9s">Running Club</p>
+        <h1 class="headline">
+          <span class="line"><span class="line__in" style="--d:1s">Lari bareng,</span></span>
+          <span class="line"><span class="line__in" style="--d:1.12s"><em>lebih jauh.</em></span></span>
+        </h1>
+        <p class="run-hero__lead reveal" style="--d:1.4s">Dari 3K santai sampai target race. Datang, siapkan sepatu, dan temukan ritmemu bersama teman-teman ED Club.</p>
+        <div class="run-hero__cta reveal" style="--d:1.55s">
+          <a class="btn" href="#event">Lihat jadwal <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+          <a class="run-back" href="#rute">Lihat rute →</a>
+          <a class="run-back" href="index.html#games">← Semua olahraga</a>
+        </div>
+      </div>
+
+      <figure class="run-hero__photo">
+        <img src="assets/images/lari.webp" alt="Pelari berbaju merah berlari di jalan yang dikelilingi pepohonan" style="object-position:50% 78%" fetchpriority="high">
+        <figcaption class="run-chip reveal" style="--d:1.9s">
+          <span class="run-chip__dot"></span>
+          <span>Next run<strong>Sabtu · 20:00</strong></span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="run-ticker" aria-hidden="true">
+      <div class="run-ticker__track" id="ticker">
+        <span>Run</span><span>Eat</span><span>Repeat</span><span>Run</span><span>Eat</span><span>Repeat</span><span>Run</span><span>Eat</span><span>Repeat</span>
+      </div>
+    </section>
+
+    <section class="run-event" id="event">
+      <div class="run-event__card" data-reveal>
+        <div class="run-event__main">
+          <span class="tag tag--dark">Next Run</span>
+          <h2>ED Fun Run<br>Vol. 1</h2>
+          <p>Lari santai terbuka untuk semua anggota. Tidak perlu cepat, yang penting datang dan seru-seruan bareng.</p>
+        </div>
+        <dl class="run-event__facts">
+          <div><dt>Hari</dt><dd>Sabtu</dd></div>
+          <div><dt>Jam</dt><dd>20:00</dd></div>
+          <div><dt>Lokasi</dt><dd>Kedai Karimata</dd></div>
+        </dl>
+        <a class="btn btn--dark run-event__btn" href="index.html#join">Gabung Fun Run <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+    </section>
+
+    <section class="run-map" id="rute">
+      <div class="run-map__head" data-reveal>
+        <div>
+          <span class="eyebrow-s">Rute</span>
+          <h2>Satu loop,<br>balik ke Karimata<em>.</em></h2>
+        </div>
+        <dl class="run-map__stats">
+          <div><dt>Jarak</dt><dd>±5 km</dd></div>
+          <div><dt>Start</dt><dd>Kedai Karimata</dd></div>
+          <div><dt>Finish</dt><dd>Kedai Karimata</dd></div>
+        </dl>
+      </div>
+
+      <div class="run-map__frame" data-reveal>
+        <div id="map" aria-label="Peta 3D rute lari Surabaya"></div>
+        <div class="map-hud" aria-live="off">
+          <span class="map-hud__label">Jarak tempuh</span>
+          <strong><span id="hudKm">0,0</span> km</strong>
+          <i class="map-hud__bar"><b id="hudBar"></b></i>
+        </div>
+        <div class="map-ctrl">
+          <button class="map-btn" id="mapReplay" type="button">↻ <span>Putar ulang</span></button>
+          <button class="map-btn" id="mapFollow" type="button" aria-pressed="true">Kamera ikuti pelari</button>
+        </div>
+        <p class="map-via">Lewat Jalan Raya Gubeng · Kayoon · Stasiun Gubeng · Biliton</p>
+      </div>
+    </section>
+
+    <section class="run-steps" id="steps">
+      <div class="run-steps__head" data-reveal>
+        <span class="eyebrow-s">Alurnya</span>
+        <h2>Empat langkah,<br>satu malam seru<em>.</em></h2>
+      </div>
+
+      <ol class="run-steps__list" id="stepsList">
+        <li class="run-step" style="--i:0"><span class="run-step__no">01</span><h3>Kumpul</h3><p>Datang ke titik kumpul, kenalan, dan cek perlengkapan.</p></li>
+        <li class="run-step" style="--i:1"><span class="run-step__no">02</span><h3>Pemanasan</h3><p>Peregangan ringan bareng supaya badan siap.</p></li>
+        <li class="run-step" style="--i:2"><span class="run-step__no">03</span><h3>Lari</h3><p>Ikuti pace sendiri. Semua level boleh ikut.</p></li>
+        <li class="run-step" style="--i:3"><span class="run-step__no">04</span><h3>Ngopi bareng</h3><p>Finish, istirahat, dan ngobrol santai di Kedai Karimata.</p></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="logo" href="index.html#home" aria-label="ED Club">ED<span>Club</span></a>
+        <p>All Games.<br>One Community.</p>
+      </div>
+      <nav class="footer__col" aria-label="Jelajahi">
+        <h4>Explore</h4>
+        <a href="index.html#about">Community</a>
+        <a href="index.html#games">Games</a>
+        <a href="index.html#events">Events</a>
+        <a href="index.html#join">Join</a>
+      </nav>
+      <nav class="footer__col" aria-label="Sosial media">
+        <h4>Social</h4>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">WhatsApp</a>
+      </nav>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@edclub.id">hello@edclub.id</a>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <span>© 2026 ED Club</span>
+      <a href="#" class="totop">Kembali ke atas ↑</a>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="assets/route-surabaya.js"></script>
+  <script src="nav.js"></script>
+  <script src="lari.js"></script>
+  <script src="map.js"></script>
+</body>
+</html>

@@ -1,181 +1,273 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>English Day — Our Travel Diary</title>
-<meta name="description" content="English Day — kumpulan cerita, jadwal, dan destinasi perjalanan grup English Day.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fugaz+One&family=Kalam:wght@400;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ED Club — All Games. One Community.</title>
+  <meta name="description" content="ED Club: satu komunitas untuk semua olahraga.">
+  <meta name="theme-color" content="#0b0d0a">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:site_name" content="ED Club">
+  <meta property="og:title" content="ED Club — All Games. One Community.">
+  <meta property="og:description" content="Satu komunitas untuk semua olahraga: lari, padel, badminton, naik gunung, dan lainnya.">
+  <meta property="og:image" content="assets/images/hero.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="is-loading">
 
-<h1 class="sr-only">English Day — Travel Diary</h1>
-
-<div class="scene">
-
-  <div class="board-wrap" id="boardWrap">
-    <div class="board-frame">
-      <div class="board-viewport" id="boardViewport">
-        <div class="board-canvas" id="boardCanvas">
-          <div class="light-beam"></div>
-          <div class="board-panel" id="boardPanel">
-
-        <!-- Title -->
-        <div class="pin title-pin" style="--l:30%; --t:20%; --w:40%;">
-          <div class="title-paper">
-            <span class="smiley-sticky" data-modal="joke">☺</span>
-            <div class="title-txt">ENGLISH<br>DAY</div>
-            <div class="title-txt title-txt--mirror">ENGLISH<br>DAY</div>
-          </div>
-        </div>
-
-        <!-- About sticky note -->
-        <button class="pin note note--yellow no-scale" style="--l:18%; --t:14%; --w:14%; --h:14.6%;" data-modal="about" aria-label="Tentang Kami">
-          <span class="pin-dot"></span>
-          <span class="handwrite">About</span>
-        </button>
-
-        <!-- Sketch note: destinations map -->
-        <button class="pin note note--paper" style="--l:20%; --t:33%; --w:15%; --h:18.9%;" data-modal="destinations" aria-label="Destinasi">
-          <svg viewBox="0 0 100 70" class="sketch-svg"><path d="M8 55 L30 15 L50 45 L68 10 L92 50" fill="none" stroke="#8a5a34" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30" cy="15" r="4" fill="#8a5a34"/><circle cx="68" cy="10" r="4" fill="#8a5a34"/></svg>
-          <span class="handwrite small">rute kita</span>
-        </button>
-
-        <!-- Sunglasses polaroid -->
-        <div class="pin polaroid" style="--l:6%; --t:4%; --w:13%; --h:18.4%;">
-          <div class="photo photo--sunset">
-            <svg viewBox="0 0 100 60"><circle cx="30" cy="30" r="18" fill="#2b2b2b"/><circle cx="70" cy="30" r="18" fill="#2b2b2b"/><rect x="46" y="26" width="8" height="6" fill="#2b2b2b"/></svg>
-          </div>
-        </div>
-
-        <!-- Itinerary poster -->
-        <button class="pin poster" style="--l:5%; --t:17%; --w:11%; --h:22.9%;" data-modal="itinerary" aria-label="Itinerary">
-          <div class="poster-face">
-            <span class="poster-title">TRIP<br>PLAN</span>
-            <span class="poster-sub">Next stop:<br>???</span>
-          </div>
-        </button>
-
-        <!-- Peeking photo behind docs -->
-        <div class="pin photo-peek" style="--l:9%; --t:42%; --w:11%; --h:24.5%;">
-          <div class="photo photo--group"><svg viewBox="0 0 100 70"><circle cx="35" cy="30" r="14" fill="#e8b07c"/><circle cx="65" cy="30" r="14" fill="#d99a68"/><rect x="20" y="42" width="30" height="22" rx="8" fill="#c96b4a"/><rect x="50" y="42" width="30" height="22" rx="8" fill="#4a7c96"/></svg></div>
-        </div>
-
-        <!-- Schedule / itinerary document -->
-        <button class="pin doc" style="--l:4%; --t:53%; --w:12%; --h:23.8%;" data-modal="schedule" aria-label="Jadwal Trip">
-          <div class="doc-face">
-            <span class="doc-line"></span><span class="doc-line"></span><span class="doc-line short"></span>
-            <span class="doc-line"></span><span class="doc-line short"></span>
-          </div>
-        </button>
-
-        <!-- Members polaroid left -->
-        <button class="pin polaroid clickable" style="--l:20%; --t:67%; --w:16%; --h:22.8%;" data-modal="members" aria-label="Trip Gunung Bokong">
-          <div class="photo photo--crew1"><img src="assets/images/cover.jpg" alt="Kru English Day di trip Gunung Bokong" loading="lazy"></div>
-          <span class="handwrite tiny">gunung bokong</span>
-        </button>
-
-        <!-- Game / fun moment photo -->
-        <div class="pin photo-tilt" style="--l:31%; --t:73%; --w:15%; --h:17.4%;">
-          <div class="photo photo--fun"><svg viewBox="0 0 100 62"><rect width="100" height="62" fill="#e9dfc9"/><rect x="10" y="10" width="80" height="42" fill="#c9a15a"/><circle cx="35" cy="31" r="6" fill="#fff"/><circle cx="65" cy="31" r="6" fill="#fff"/><circle cx="35" cy="31" r="1.6" fill="#333"/><circle cx="65" cy="31" r="1.6" fill="#333"/></svg></div>
-        </div>
-
-        <!-- Next Trip event card -->
-        <button class="pin card card--event" style="--l:59.5%; --t:5%; --w:12%; --h:16.8%;" data-modal="event" aria-label="Next Trip">
-          <span class="card-label">NEXT<br>TRIP</span>
-        </button>
-
-        <!-- Rotating gallery frame -->
-        <button class="pin frame" style="--l:52%; --t:10%; --w:11%; --h:22.4%;" data-modal="gallery" id="galleryFrame" aria-label="Galeri Foto">
-          <div class="frame-face" id="frameFace"><svg viewBox="0 0 100 70"><rect width="100" height="70" fill="#f0e6d2"/><circle cx="50" cy="24" r="10" fill="#f2b134"/><path d="M0 60 L30 30 L55 50 L75 25 L100 55 L100 70 L0 70 Z" fill="#7fa06b"/></svg></div>
-        </button>
-
-        <!-- Passport reminder sticky -->
-        <button class="pin note note--pink" style="--l:75%; --t:14%; --w:7%; --h:12.1%;" data-modal="joke2" aria-label="Catatan">
-          <span class="handwrite tiny">jangan<br>lupa<br>paspor!</span>
-        </button>
-
-        <!-- Suitcase polaroid: destinations -->
-        <button class="pin polaroid clickable" style="--l:83%; --t:13%; --w:14%; --h:27.3%;" data-modal="destinations" aria-label="Destinasi">
-          <div class="photo photo--suitcase"><svg viewBox="0 0 100 80"><rect x="20" y="28" width="60" height="42" rx="6" fill="#c9683f"/><rect x="42" y="16" width="16" height="14" rx="3" fill="#c9683f"/><rect x="20" y="44" width="60" height="6" fill="#8a4326"/><circle cx="30" cy="70" r="6" fill="#3a2a20"/><circle cx="70" cy="70" r="6" fill="#3a2a20"/></svg></div>
-          <span class="handwrite tiny">packing time</span>
-        </button>
-
-        <!-- Postcard stack -->
-        <div class="pin postcards" style="--l:66%; --t:53%; --w:12%; --h:26.5%;">
-          <div class="postcard pc1"></div>
-          <div class="postcard pc2"></div>
-        </div>
-
-        <!-- Plane doodle -->
-        <div class="pin doodle" style="--l:73%; --t:51%; --w:7%; --h:10%;">
-          <svg viewBox="0 0 100 60"><path d="M10 40 L55 25 L90 12 L70 32 L92 44 L60 40 L45 52 L50 38 Z" fill="none" stroke="#8a3d2a" stroke-width="3" stroke-linejoin="round"/></svg>
-        </div>
-
-        <!-- Members polaroid right -->
-        <button class="pin polaroid clickable" style="--l:84%; --t:50%; --w:14%; --h:27.3%;" data-modal="members" aria-label="Kru English Day">
-          <div class="photo photo--crew2"><svg viewBox="0 0 100 74"><rect width="100" height="74" fill="#9fc3d6"/><circle cx="38" cy="38" r="15" fill="#f4d3a3"/><circle cx="68" cy="34" r="13" fill="#e9b98a"/></svg></div>
-          <span class="handwrite tiny">on the road</span>
-        </button>
-
-        <!-- Feed the fish sticky -->
-        <button class="pin note note--pink" style="--l:80%; --t:78%; --w:7%; --h:11.1%;" id="feedFishBtn" aria-label="Kasih makan ikan">
-          <span class="handwrite tiny">kasih<br>makan<br>ikan</span>
-        </button>
-
-        <!-- Find us on -->
-        <div class="pin findus" style="--l:53%; --t:72%; --w:19%; --h:23.3%;">
-          <div class="findus-note">
-            <span class="handwrite circle-txt">Find Us on</span>
-            <div class="findus-legs">
-              <a class="soc" href="#" data-social="instagram" aria-label="Instagram">◎</a>
-              <a class="soc" href="#" data-social="tiktok" aria-label="TikTok">♪</a>
-              <a class="soc" href="#" data-social="youtube" aria-label="YouTube">▶</a>
-              <a class="soc" href="#" data-social="whatsapp" aria-label="WhatsApp">☎</a>
-            </div>
-          </div>
-        </div>
-
-          </div>
-          <div class="canvas-hint" id="canvasHint">+ ruang untuk konten baru</div>
-        </div>
-        <div class="drag-hint" id="dragHint">🖐️ geser untuk jelajah papan</div>
-      </div>
-    </div>
-
-    <!-- Phone -->
-    <button class="phone" data-modal="contact" aria-label="Contact Us">
-      <div class="phone-body">
-        <div class="phone-handset"></div>
-        <div class="phone-dial"></div>
-      </div>
-      <span class="phone-tag handwrite tiny">Contact<br>Us</span>
-    </button>
-
-    <!-- Fishbowl -->
-    <div class="fishbowl" id="fishbowl">
-      <div class="bowl-glass">
-        <div class="fish" id="fish">🐟</div>
-        <div class="bubbles" id="bubbles"></div>
-      </div>
-    </div>
+  <div class="loader" aria-hidden="true">
+    <span class="loader__word">ED<i>.</i></span>
   </div>
 
-  <div class="desk"></div>
-  <p class="copyright">© 2026 English Day. All Rights Reserved.</p>
-</div>
+  <header class="nav">
+    <a class="logo" href="#home" aria-label="ED Club">ED<span>Club</span></a>
+    <nav class="pill" aria-label="Utama">
+      <a class="pill__link is-active" href="#home">Home</a>
+      <a class="pill__link" href="#games">Games</a>
+      <a class="pill__link" href="#about">Community</a>
+      <a class="pill__link" href="#events">Events</a>
+      <a class="pill__link" href="#join">Join</a>
+    </nav>
+    <button class="burger" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </header>
 
-<!-- Modals -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal-box" id="modalBox">
-    <button class="modal-close" id="modalClose" aria-label="Tutup">✕</button>
-    <div class="modal-content" id="modalContent"></div>
+  <div class="menu" id="menu">
+    <nav aria-label="Menu mobile">
+      <a href="#home" style="--i:0">Home</a>
+      <a href="#games" style="--i:1">Games</a>
+      <a href="#about" style="--i:2">Community</a>
+      <a href="#events" style="--i:3">Events</a>
+      <a href="#join" style="--i:4">Join</a>
+    </nav>
   </div>
-</div>
 
-<script src="script.js"></script>
+  <main>
+    <section class="hero" id="home">
+      <div class="hero__media">
+        <img class="hero__img" src="assets/images/hero.webp" alt="Atlet muda berbaju neon bersiap start di jalan terbuka" fetchpriority="high">
+        <div class="hero__shade"></div>
+      </div>
+
+      <div class="hero__content">
+        <p class="eyebrow reveal" style="--d:.9s">Sports Community Club</p>
+        <h1 class="headline" aria-label="All Games. One Community.">
+          <span class="line"><span class="line__in" style="--d:1s">All Games.</span></span>
+          <span class="line"><span class="line__in" style="--d:1.12s">One <em>Community.</em></span></span>
+        </h1>
+      </div>
+
+      <a class="card card--thumb reveal" href="#games" style="--d:1.5s" aria-label="Lihat semua games">
+        <span class="card__label">Play<br>Together<br>Rise Faster</span>
+        <span class="arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+      </a>
+
+      <aside class="card card--glass reveal" style="--d:1.65s">
+        <p>Futsal, badminton, basket, lari, dan lainnya. Satu tempat untuk berlatih, bertanding, dan tumbuh bersama.</p>
+        <div class="card__foot">
+          <a class="arrow" href="#join" aria-label="Gabung ED Club"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <div class="stat"><strong data-count="500">0</strong><span>Members aktif</span></div>
+        </div>
+      </aside>
+
+      <div class="scroll reveal" style="--d:1.9s" aria-hidden="true"><i></i>Scroll</div>
+    </section>
+
+    <section class="marquee" aria-label="Cabang olahraga">
+      <div class="marquee__track">
+        <span>Futsal</span><i></i><span>Badminton</span><i></i><span>Basket</span><i></i><span>Voli</span><i></i><span>Lari</span><i></i><span>Padel</span><i></i><span>Esports</span><i></i>
+        <span>Futsal</span><i></i><span>Badminton</span><i></i><span>Basket</span><i></i><span>Voli</span><i></i><span>Lari</span><i></i><span>Padel</span><i></i><span>Esports</span><i></i>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about__text" data-reveal>
+        <span class="tag">About ED Club</span>
+        <h2 class="about__title">Di ED Club, olahraga dan komunitas berjalan bersama. Dari pemula sampai profesional, semua punya tempat di sini.</h2>
+        <a class="btn" href="#join">Gabung Sekarang <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+
+      <div class="about__slider" data-reveal style="--d:.12s">
+        <div class="slider__track" id="sliderTrack">
+          <article class="slide">
+            <img src="assets/images/outdoor.webp" alt="Pendaki tersenyum di jalur gunung dengan tongkat" style="object-position:50% 30%" loading="lazy">
+            <span class="tag tag--glass">Outdoor area</span>
+            <p class="slide__title">Ruang untuk berlatih, santai, dan main bareng.</p>
+            <a class="arrow" href="#games" aria-label="Lihat area outdoor"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          </article>
+          <article class="slide">
+            <img src="assets/images/community.webp" alt="Dua pemain padel beraksi di lapangan dengan latar langit mendung" style="object-position:50% 45%" loading="lazy">
+            <span class="tag tag--glass">Community</span>
+            <p class="slide__title">Latihan rutin</p>
+          </article>
+          <article class="slide">
+            <img src="assets/images/renang.webp" alt="Perenang tersenyum merentangkan tangan di dalam kolam" style="object-position:50% 20%" loading="lazy">
+            <span class="tag tag--glass">Events</span>
+            <p class="slide__title">Turnamen &amp; fun match</p>
+          </article>
+        </div>
+        <div class="slider__foot">
+          <p>Temukan olahraga favoritmu: main, latihan, dan bertanding bersama.</p>
+          <div class="slider__nav">
+            <button class="nav-btn" id="sliderPrev" aria-label="Sebelumnya"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <button class="nav-btn" id="sliderNext" aria-label="Berikutnya"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sports" id="games">
+      <div class="sports__panel" data-reveal>
+        <div class="sports__head">
+          <h2>Explore Our Sports</h2>
+          <div class="sports__tools">
+            <label class="search">
+              <input id="sportSearch" type="search" placeholder="Cari olahraga..." autocomplete="off" aria-label="Cari olahraga">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+            </label>
+            <button class="btn btn--dark" id="sportToggle" type="button" aria-pressed="false"><span>View All</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
+          </div>
+        </div>
+
+        <div class="sports__track" id="sportTrack">
+          <article class="sport" data-name="lari" style="--c1:#c6f432;--c2:#1f6b2a">
+            <img src="assets/images/lari.webp" alt="Pelari berbaju merah berlari di jalan yang dikelilingi pepohonan" style="object-position:50% 80%" loading="lazy">
+            <span class="sport__no">01</span>
+            <span class="tag tag--glass">Outdoor</span>
+            <a class="sport__link" href="lari.html" aria-label="Lihat halaman Lari"></a>
+            <h3>Lari</h3>
+            <p>Lari pagi bareng, dari 3K santai sampai target race.</p>
+          </article>
+          <article class="sport" data-name="padel" style="--c1:#2f6bff;--c2:#0a1a52">
+            <img src="assets/images/padel.webp" alt="Pemain padel duduk santai di depan net dengan raket" style="object-position:50% 35%" loading="lazy">
+            <span class="sport__no">02</span>
+            <span class="tag tag--glass">Court</span>
+            <h3>Padel</h3>
+            <p>Main double, seru, dan cocok untuk semua level.</p>
+          </article>
+          <article class="sport" data-name="badminton" style="--c1:#ffd23f;--c2:#8a3b00">
+            <img src="assets/images/badminton.webp" alt="Pemain badminton memegang raket sambil tersenyum" style="object-position:50% 25%" loading="lazy">
+            <span class="sport__no">03</span>
+            <span class="tag tag--glass">Indoor</span>
+            <h3>Badminton</h3>
+            <p>Sparring rutin dan fun match tiap pekan.</p>
+          </article>
+          <article class="sport" data-name="naik gunung" style="--c1:#6fae8a;--c2:#13342a">
+            <img src="assets/images/naik-gunung.webp" alt="Pendaki berjalan di jalur pegunungan dengan tongkat" style="object-position:40% 25%" loading="lazy">
+            <span class="sport__no">04</span>
+            <span class="tag tag--glass">Adventure</span>
+            <h3>Naik Gunung</h3>
+            <p>Pendakian bareng, dari bukit ringan sampai puncak.</p>
+          </article>
+          <article class="sport" data-name="liburan" style="--c1:#ff8a5c;--c2:#5a1f3d">
+            <img src="assets/images/liburan.jpg" alt="Foto bersama anggota ED Club saat liburan" style="object-position:50% 100%" loading="lazy">
+            <span class="sport__no">05</span>
+            <span class="tag tag--glass">Trip</span>
+            <h3>Liburan</h3>
+            <p>Jalan-jalan satu tim, healing sambil makin akrab.</p>
+          </article>
+          <article class="sport" data-name="sepedaan" style="--c1:#5ad0e6;--c2:#0b3a4a">
+            <img src="assets/images/sepedaan.webp" alt="Pesepeda tersenyum di jalur sepeda tepi pantai" style="object-position:55% 50%" loading="lazy">
+            <span class="sport__no">06</span>
+            <span class="tag tag--glass">Outdoor</span>
+            <h3>Sepedaan</h3>
+            <p>Gowes santai keliling kota di akhir pekan.</p>
+          </article>
+          <article class="sport" data-name="tennis" style="--c1:#2aa1b8;--c2:#0a3a52">
+            <img src="assets/images/tennis.webp" alt="Pemain tennis berbaring tertawa di lapangan biru dengan bola dan raket kayu" style="object-position:50% 25%" loading="lazy">
+            <span class="sport__no">07</span>
+            <span class="tag tag--glass">Court</span>
+            <h3>Tennis</h3>
+            <p>Rally santai sampai latihan serius di lapangan.</p>
+          </article>
+          <p class="sports__empty" id="sportEmpty" hidden>Olahraga tidak ditemukan.</p>
+        </div>
+
+        <div class="sports__foot">
+          <div class="slider__nav">
+            <button class="nav-btn nav-btn--dark" id="sportPrev" aria-label="Sebelumnya"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <button class="nav-btn nav-btn--dark" id="sportNext" aria-label="Berikutnya"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+          <p>Tujuh kegiatan favorit anggota ED Club. Pilih satu, ajak teman, dan mulai bergerak bareng.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="events" id="events">
+      <div class="events__head" data-reveal>
+        <div>
+          <span class="eyebrow-s">Upcoming</span>
+          <h2 class="events__title">Sampai jumpa<br>di jalan<em>.</em></h2>
+        </div>
+        <p>Datang, siapkan sepatu, dan temukan ritmemu. Semua acara terbuka untuk anggota ED Club, tinggal pilih dan kami tunggu di titik kumpul.</p>
+      </div>
+
+      <ul class="events__list">
+        <li class="event" data-reveal style="--d:.05s">
+          <h3 class="event__name">ED Fun Run Vol. 1</h3>
+          <div class="event__col"><span class="label">Lokasi</span><span>Kedai Karimata</span></div>
+          <div class="event__col"><span class="label">Waktu</span><span>Sabtu · 20:00</span></div>
+          <div class="event__col"><span class="label">Kategori</span><span class="badge badge--lime">Fun Run</span></div>
+          <a class="join" href="lari.html#event">Gabung <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </li>
+        <li class="event" data-reveal style="--d:.15s">
+          <h3 class="event__name">Tahun Baru di Bali</h3>
+          <div class="event__col"><span class="label">Lokasi</span><span>Bali</span></div>
+          <div class="event__col"><span class="label">Tanggal</span><span>30 Desember 2026</span></div>
+          <div class="event__col"><span class="label">Kategori</span><span class="badge">Liburan</span></div>
+          <a class="join" href="#join">Gabung <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="cta" id="join">
+      <div class="cta__card" data-reveal>
+        <img class="cta__img" src="assets/images/liburan.jpg" alt="" style="object-position:50% 90%" loading="lazy">
+        <div class="cta__body">
+          <h2 class="cta__title"><span>Game berikutmu</span><em>dimulai di sini.</em></h2>
+          <p>Mau coba olahraga baru atau cari teman untuk main bareng? Di ED Club selalu ada tempat untukmu.</p>
+          <a class="btn" href="#join">Gabung ED Club <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="logo" href="#home" aria-label="ED Club">ED<span>Club</span></a>
+        <p>All Games.<br>One Community.</p>
+      </div>
+      <nav class="footer__col" aria-label="Jelajahi">
+        <h4>Explore</h4>
+        <a href="#about">Community</a>
+        <a href="#games">Games</a>
+        <a href="#events">Events</a>
+        <a href="#join">Join</a>
+      </nav>
+      <nav class="footer__col" aria-label="Sosial media">
+        <h4>Social</h4>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">WhatsApp</a>
+      </nav>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@edclub.id">hello@edclub.id</a>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <span>© 2026 ED Club</span>
+      <a href="#home" class="totop">Kembali ke atas ↑</a>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
