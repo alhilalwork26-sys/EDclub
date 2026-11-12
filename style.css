@@ -653,3 +653,70 @@ body:not(.is-loading) .run-hero__photo { clip-path: inset(0 0 0 0 round 36px); }
   .map-ctrl { bottom: 46px; }
   .run-map__frame { height: clamp(460px, 74svh, 640px); }
 }
+
+/* Race day standard */
+.run-std, .run-pace, .run-faq { background: var(--ink); padding: clamp(40px, 6vw, 80px) var(--gutter); }
+.run-std__head h2, .run-pace__head h2, .run-faq__head h2 {
+  font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase;
+  font-size: clamp(40px, 6vw, 88px); line-height: 1; margin: 16px 0 18px;
+}
+.run-std__head em, .run-pace__head em, .run-faq__head em { font-style: normal; color: var(--lime); }
+.run-std__head p, .run-pace__head p { max-width: 34em; font-size: 15px; line-height: 1.6; opacity: .7; }
+.run-std__grid { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: clamp(28px, 4vw, 56px); }
+.std {
+  padding: 26px; border-radius: 28px; border: 1px solid var(--glass-line); background: rgba(255, 255, 255, .04);
+  display: flex; flex-direction: column; gap: 12px;
+  transition: transform .5s var(--ease), background .4s, border-color .4s, opacity .9s var(--ease) var(--d, 0s);
+}
+.std:hover { transform: translateY(-6px); background: rgba(212, 255, 63, .08); border-color: rgba(212, 255, 63, .5); }
+.std__icon { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: var(--lime); color: var(--ink); margin-bottom: 8px; transition: transform .6s var(--ease); }
+.std:hover .std__icon { transform: rotate(-12deg) scale(1.08); }
+.std__icon svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.std h3 { font-size: 19px; font-weight: 500; letter-spacing: -.01em; }
+.std p { font-size: 14px; line-height: 1.55; opacity: .68; }
+
+.run-pace__lanes { list-style: none; margin-top: clamp(28px, 4vw, 56px); border-top: 1px solid var(--glass-line); }
+.lane { display: grid; grid-template-columns: 170px 1fr 120px; align-items: center; gap: 24px; padding: 26px 0; border-bottom: 1px solid var(--glass-line); }
+.lane__meta strong { font-family: 'Anton', sans-serif; font-weight: 400; font-size: 36px; color: var(--lime); display: block; line-height: 1; }
+.lane__meta span { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; opacity: .6; }
+.lane__track { position: relative; height: 14px; }
+.lane__track::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 2px dashed rgba(255, 255, 255, .22); }
+.lane__dot { position: absolute; top: 0; left: 0; width: 14px; height: 14px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 6px rgba(212, 255, 63, .18); animation: lane var(--dur) linear infinite; }
+@keyframes lane { from { left: 0; } to { left: calc(100% - 14px); } }
+.lane__time { text-align: right; }
+.lane__time span { display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; opacity: .5; margin-bottom: 4px; }
+.lane__time strong { font-family: 'Anton', sans-serif; font-weight: 400; font-size: 26px; }
+
+/* Legenda peta + penanda rute */
+.map-legend { list-style: none; display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 18px; font-size: 13px; opacity: .85; }
+.map-legend li { display: flex; align-items: center; gap: 8px; }
+.lg, .aid { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; font-size: 11px; font-weight: 700; font-style: normal; color: var(--white); border: 2px solid var(--ink); }
+.lg--start { background: var(--lime); }
+.lg--marshal, .aid--marshal { background: #ff8a3d; }
+.lg--water, .aid--water { background: #3fa9ff; }
+.lg--med, .aid--med { background: #ff4d5e; }
+.aid { width: 26px; height: 26px; font-size: 12px; box-shadow: 0 2px 10px rgba(0,0,0,.5); cursor: default; }
+
+.run-step__time { display: block; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; opacity: .6; margin-bottom: 14px; }
+
+/* FAQ */
+.run-faq { padding-bottom: clamp(56px, 8vw, 110px); }
+.run-faq__list { margin-top: clamp(24px, 4vw, 48px); border-top: 1px solid var(--glass-line); max-width: 900px; }
+.run-faq details { border-bottom: 1px solid var(--glass-line); }
+.run-faq summary {
+  list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px;
+  padding: 24px 4px; font-size: clamp(17px, 1.8vw, 22px); font-weight: 500; transition: color .3s;
+}
+.run-faq summary::-webkit-details-marker { display: none; }
+.run-faq summary::after { content: '+'; font-size: 28px; font-weight: 300; color: var(--lime); transition: transform .4s var(--ease); flex: none; }
+.run-faq details[open] summary::after { transform: rotate(45deg); }
+.run-faq summary:hover { color: var(--lime); }
+.run-faq details p { padding: 0 4px 26px; max-width: 40em; font-size: 15px; line-height: 1.6; opacity: .7; animation: faq .5s var(--ease); }
+@keyframes faq { from { opacity: 0; transform: translateY(-8px); } }
+
+@media (max-width: 1000px) { .run-std__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) {
+  .run-std__grid { grid-template-columns: 1fr; }
+  .lane { grid-template-columns: 1fr auto; gap: 14px 16px; }
+  .lane__track { grid-column: 1 / -1; order: 3; }
+}

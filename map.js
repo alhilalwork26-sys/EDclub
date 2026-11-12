@@ -91,6 +91,20 @@ map.on('load', () => {
     paint: { 'line-color': '#d4ff3f', 'line-width': 5 } });
 
   startPin.addTo(map);
+
+  // Marshal di tikungan, water station di tengah rute, P3K di start/finish
+  const nearest = (lngLat) => coords.reduce((best, c) => (haversine(c, lngLat) < haversine(best, lngLat) ? c : best), coords[0]);
+  const aid = (cls, label, text, lngLat) => {
+    const el = document.createElement('div');
+    el.className = `aid aid--${cls}`;
+    el.textContent = label;
+    el.title = text;
+    new maplibregl.Marker({ element: el }).setLngLat(lngLat).addTo(map);
+  };
+  [[112.74618, -7.27632], [112.74443, -7.27255], [112.7496, -7.26599], [112.74774, -7.26534], [112.74878, -7.2617], [112.75138, -7.26658], [112.74925, -7.2771]]
+    .forEach((p, i) => aid('marshal', 'M', `Marshal ${i + 1}`, nearest(p)));
+  aid('water', 'W', `Water station · km ${fmtKm(total / 2)}`, pointAt(total / 2).pos);
+  aid('med', '+', 'Titik P3K (start & finish)', pointAt(120).pos);
   frame.classList.add('is-ready');
 
   // Mulai otomatis saat peta terlihat
