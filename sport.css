@@ -234,7 +234,7 @@ body.sp-sepeda { --bg: #d9f2f7; --fg: #06323d; --acc: #ffc21f; --on-acc: #06323d
 .sp-sepeda .sp-eyebrow, .sp-sepeda .sp-lead { color: var(--fg); }
 .sp-sepeda .sp-back:hover { color: #0a7f98; }
 .sd-hero { position: relative; min-height: 100svh; overflow: hidden; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 24px; padding: 120px var(--gutter) 190px; background: linear-gradient(180deg, #8fdcf0 0%, #d9f2f7 70%); }
-.sd-hero > div:not(.sd-road):not(.sd-bike) { position: relative; z-index: 2; }
+.sd-hero > div:not(.sd-road):not(.sd-pack) { position: relative; z-index: 2; }
 .sd-cloud { z-index: 1; position: absolute; height: 54px; border-radius: 60px; background: #fff; opacity: .85; animation: sd-cloud 40s linear infinite; }
 .sd-cloud::before, .sd-cloud::after { content: ''; position: absolute; background: #fff; border-radius: 50%; }
 .sd-cloud::before { width: 60px; height: 60px; left: 18%; top: -26px; } .sd-cloud::after { width: 44px; height: 44px; left: 52%; top: -18px; }
@@ -252,10 +252,21 @@ body:not(.is-loading) .sd-photo { opacity: 1; transform: none; }
 .sd-road { position: absolute; left: 0; right: 0; bottom: 0; height: 120px; background: #1d3c46; }
 .sd-road::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 5px dashed rgba(255,255,255,.7); animation: sd-dash 1s linear infinite; }
 @keyframes sd-dash { to { transform: translateX(-60px); } }
-.sd-bike { position: absolute; bottom: 92px; left: 0; width: 170px; animation: sd-ride 14s linear infinite; }
-.sd-bike svg { width: 100%; height: auto; overflow: visible; }
-.sd-bike .wheel { transform-box: fill-box; transform-origin: center; animation: sd-spin .8s linear infinite; }
-@keyframes sd-ride { from { transform: translateX(-220px); } to { transform: translateX(calc(100vw + 40px)); } }
+.sd-pack { position: absolute; bottom: 92px; left: 0; width: 0; height: 0; z-index: 3; animation: sd-ride 17s linear infinite; }
+.sd-rider { position: absolute; bottom: 0; width: 250px; }
+.sd-rider svg { display: block; width: 100%; height: auto; overflow: visible; }
+.sd-rider .wheel { transform-box: fill-box; transform-origin: center; animation: sd-spin .8s linear infinite; }
+.sd-rider--lead { left: 0; animation: sd-bob .8s ease-in-out infinite; }
+.sd-rider--chase { left: -340px; animation: sd-chase 6s ease-in-out infinite; }
+.sd-rider--chase::before {
+  content: ''; position: absolute; left: -46px; top: 36%; width: 40px; height: 22px;
+  background: repeating-linear-gradient(180deg, rgba(6,50,61,.55) 0 3px, transparent 3px 9px); border-radius: 3px;
+  animation: sd-lines .35s linear infinite;
+}
+@keyframes sd-ride { from { transform: translateX(-640px); } to { transform: translateX(calc(100vw + 60px)); } }
+@keyframes sd-chase { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(125px); } }
+@keyframes sd-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes sd-lines { from { opacity: .9; transform: translateX(0); } to { opacity: 0; transform: translateX(-16px); } }
 .sd-styles { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-top: 32px; padding: 6px 2px 14px; }
 .sd-styles::-webkit-scrollbar { display: none; }
 .sd-style { flex: none; width: clamp(260px, 30vw, 380px); scroll-snap-align: start; padding: 34px; border-radius: 30px; background: var(--card); box-shadow: 0 14px 40px rgba(6,50,61,.12); transition: transform .5s var(--ease); }
@@ -448,3 +459,5 @@ body:not(.is-loading) .rn-team { transform: none; opacity: 1; animation: rn-bob 
 .sport--cut::after { z-index: 1; background: linear-gradient(0deg, rgba(3,32,56,.85), transparent 42%); }
 .sport--cut h3, .sport--cut p { position: relative; z-index: 2; }
 .sport--cut .tag--glass { z-index: 2; }
+
+@media (max-width: 900px) { .sd-rider { width: 190px; } .sd-rider--chase { left: -260px; } .sd-pack { bottom: 82px; } @keyframes sd-chase { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(80px); } } }
