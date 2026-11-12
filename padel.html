@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Padel — ED Club</title>
+  <meta name="description" content="Padel bersama ED Club: main double di lapangan berdinding, cocok untuk semua level.">
+  <meta name="theme-color" content="#0a1626">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:site_name" content="ED Club">
+  <meta property="og:title" content="Padel bersama ED Club">
+  <meta property="og:description" content="Padel bersama ED Club: main double di lapangan berdinding, cocok untuk semua level.">
+  <meta property="og:image" content="assets/images/hero.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="sport.css">
+</head>
+<body class="is-loading sp sp-padel">
+
+  <div class="loader" aria-hidden="true">
+    <span class="loader__word"><span>English Day</span><span>Social Club<i>.</i></span></span>
+  </div>
+
+  <header class="nav">
+    <a class="logo" href="index.html#home" aria-label="ED Club">ED<span>Club</span></a>
+    <nav class="pill" aria-label="Utama">
+      <a class="pill__link" href="index.html#home">Home</a>
+      <a class="pill__link is-active" href="index.html#games">Games</a>
+      <a class="pill__link" href="index.html#about">Community</a>
+      <a class="pill__link" href="index.html#events">Events</a>
+      <a class="pill__link" href="index.html#join">Join</a>
+    </nav>
+    <button class="burger" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </header>
+
+  <div class="menu" id="menu">
+    <nav aria-label="Menu mobile">
+      <a href="index.html#home" style="--i:0">Home</a>
+      <a href="index.html#games" style="--i:1">Games</a>
+      <a href="index.html#about" style="--i:2">Community</a>
+      <a href="index.html#events" style="--i:3">Events</a>
+      <a href="index.html#join" style="--i:4">Join</a>
+    </nav>
+  </div>
+
+  <main>
+
+    <section class="pd-hero">
+      <div class="pd-hero__text">
+        <p class="sp-eyebrow reveal" style="--d:.9s">Court · Double · Seru</p>
+        <h1 class="pd-title" aria-label="Padel"><span>PA</span><span>DEL</span></h1>
+        <p class="sp-lead reveal" style="--d:1.4s">Olahraga raket yang main berempat di lapangan berdinding. Mudah dipelajari, susah berhenti, dan paling asyik dimainkan bareng teman-teman ED Club.</p>
+        <div class="sp-actions reveal" style="--d:1.6s">
+          <a class="sp-btn" href="index.html#join">Gabung main <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="sp-back" href="index.html#games">← Semua olahraga</a>
+        </div>
+        <i class="pd-ballshadow" aria-hidden="true"></i><i class="pd-ball" aria-hidden="true"></i>
+      </div>
+      <div class="pd-hero__photo">
+        <img data-hero-img src="assets/images/padel.webp" alt="Pemain padel duduk di depan net dengan raket" fetchpriority="high">
+        <svg class="pd-court" viewBox="0 0 100 130" aria-hidden="true">
+          <rect x="0" y="0" width="100" height="130" pathLength="1"/>
+          <line x1="0" y1="65" x2="100" y2="65" pathLength="1"/>
+          <line x1="0" y1="30" x2="100" y2="30" pathLength="1"/>
+          <line x1="0" y1="100" x2="100" y2="100" pathLength="1"/>
+          <line x1="50" y1="30" x2="50" y2="100" pathLength="1"/>
+        </svg>
+      </div>
+    </section>
+
+    <section class="sp-sec">
+      <span class="sp-eyebrow" data-reveal>Kenapa padel</span>
+      <h2 class="sp-h2" data-reveal>Cepat paham,<br>langsung ketagihan.</h2>
+      <div class="pd-facts">
+        <article class="pd-fact" data-reveal><b data-count="4">0</b><h3>Pemain, satu lapangan</h3><p>Padel dimainkan secara double. Dua lawan dua, jadi selalu ada teman satu tim.</p></article>
+        <article class="pd-fact" data-reveal style="--d:.1s"><b data-count="4">0</b><h3>Dinding ikut bermain</h3><p>Bola boleh memantul di dinding kaca dan jaring setelah memantul di lantai, sehingga rally lebih panjang.</p></article>
+        <article class="pd-fact" data-reveal style="--d:.2s"><b data-count="1">0</b><h3>Servis dari bawah</h3><p>Servis dilakukan underhand, lebih ramah untuk pemula dibanding olahraga raket lain.</p></article>
+      </div>
+    </section>
+
+    <section class="sp-sec">
+      <span class="sp-eyebrow" data-reveal>Level main</span>
+      <h2 class="sp-h2" data-reveal>Semua boleh ikut<em style="color:var(--acc);font-style:normal">.</em></h2>
+      <div class="pd-levels" data-tabs data-reveal>
+        <div class="pd-levels__tabs" role="tablist">
+          <button type="button" data-tab="a" aria-selected="true">Pemula</button>
+          <button type="button" data-tab="b" aria-selected="false">Menengah</button>
+          <button type="button" data-tab="c" aria-selected="false">Lanjut</button>
+        </div>
+        <div>
+          <div class="pd-levels__panel is-on" data-panel="a">Baru pertama pegang raket? Kita mulai dari pukulan dasar dan permainan santai. Tidak ada tekanan, yang penting kamu menikmati.</div>
+          <div class="pd-levels__panel" data-panel="b">Sudah paham aturan dan bisa rally? Waktunya latihan posisi, pukulan dari dinding, dan main game penuh.</div>
+          <div class="pd-levels__panel" data-panel="c">Siap bermain lebih cepat dan taktis. Cocok untuk yang ingin tanding dan mengasah strategi bersama pemain sepadan.</div>
+        </div>
+      </div>
+      <dl class="sp-info" data-reveal>
+        <div><dt>Level</dt><dd>Semua level</dd></div>
+        <div><dt>Jadwal</dt><dd>Diumumkan di grup komunitas</dd></div>
+        <div><dt>Bawa</dt><dd>Sepatu olahraga, botol minum</dd></div>
+      </dl>
+    </section>
+
+    <section class="sp-sec">
+      <div class="pd-gallery__head">
+        <div><span class="sp-eyebrow" data-reveal>Kegiatan kita</span><h2 class="sp-h2" data-reveal>Momen di lapangan<em style="color:var(--acc);font-style:normal">.</em></h2></div>
+        <div class="pd-arrows"><button type="button" data-scroll="-1" data-target="#pdStrip" aria-label="Sebelumnya">←</button><button type="button" data-scroll="1" data-target="#pdStrip" aria-label="Berikutnya">→</button></div>
+      </div>
+      <div class="pd-strip drag" id="pdStrip">
+        <figure class="shot" style="--pos:50% 30%;--zoom:1"><img src="assets/images/padel.webp" alt="Santai di tepi net" loading="lazy"><figcaption>Santai di tepi net</figcaption></figure>
+        <figure class="shot" style="--pos:50% 45%;--zoom:1"><img src="assets/images/community.webp" alt="Siap pukul" loading="lazy"><figcaption>Siap pukul</figcaption></figure>
+        <figure class="shot" style="--pos:62% 88%;--zoom:1.9"><img src="assets/images/padel.webp" alt="Raket andalan" loading="lazy"><figcaption>Raket andalan</figcaption></figure>
+        <figure class="shot" style="--pos:30% 38%;--zoom:1.7"><img src="assets/images/community.webp" alt="Senyum dulu" loading="lazy"><figcaption>Senyum dulu</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="sp-end">
+      <a class="sp-end__join" href="index.html#join" data-reveal><small>Ikut Padel?</small><strong>Gabung<br>ED Club</strong><i>→</i></a>
+      <a class="sp-end__next" href="badminton.html" data-reveal style="--d:.1s"><small>Olahraga berikutnya</small><strong>Badminton</strong><i>→</i></a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="logo" href="index.html#home" aria-label="ED Club">ED<span>Club</span></a>
+        <p>All Games.<br>One Community.</p>
+      </div>
+      <nav class="footer__col" aria-label="Jelajahi">
+        <h4>Explore</h4>
+        <a href="index.html#about">Community</a>
+        <a href="index.html#games">Games</a>
+        <a href="index.html#events">Events</a>
+        <a href="index.html#join">Join</a>
+      </nav>
+      <nav class="footer__col" aria-label="Sosial media">
+        <h4>Social</h4>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">WhatsApp</a>
+      </nav>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@edclub.id">hello@edclub.id</a>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <span>© 2026 ED Club</span>
+      <a href="#" class="totop">Kembali ke atas ↑</a>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+  <script src="sport.js"></script>
+</body>
+</html>
