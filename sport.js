@@ -63,8 +63,11 @@ document.querySelectorAll('[data-tabs]').forEach((box) => {
 // Penghitung repetisi dekoratif (halaman gym)
 document.querySelectorAll('[data-loop]').forEach((el) => {
   const max = +el.dataset.loop; let n = 0;
-  setInterval(() => { n = (n % max) + 1; el.textContent = String(n).padStart(2, '0'); }, 850);
+  setInterval(() => { n = (n % max) + 1; el.textContent = String(n).padStart(2, '0'); }, +el.dataset.ms || 850);
 });
+
+// Animasi SVG (SMIL) dihentikan jika pengguna memilih gerakan minimal
+if (reduce) document.querySelectorAll('.gm-stage svg').forEach((s) => s.pauseAnimations && s.pauseAnimations());
 
 // Parallax dan garis yang tergambar saat scroll
 const parallax = [...document.querySelectorAll('[data-parallax]')];
