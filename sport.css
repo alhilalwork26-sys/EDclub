@@ -694,3 +694,9 @@ body:not(.is-loading) .lr-photo { transform: rotate(-4deg); opacity: 1; }
 .bl-solo svg { display: block; width: 100%; height: auto; }
 
 .gn-hiker--huda .gn-hiker__name { background: #d3b8ff; } .gn-hiker--huda .gn-hiker__name::after { background: #d3b8ff; }
+
+.swimmer__cheer { position: absolute; left: 36%; top: -22px; transform: translateX(-50%); padding: 5px 12px; border-radius: 14px; white-space: nowrap; font-size: 12px; font-weight: 700; background: #fff; color: #0a2a44; box-shadow: 0 4px 12px rgba(0,0,0,.35); animation: rn-cheer 1.1s ease-in-out infinite alternate; }
+.swimmer__cheer::after { content: ''; position: absolute; left: 50%; bottom: -5px; width: 10px; height: 10px; background: #fff; transform: translateX(-50%) rotate(45deg); }
+@keyframes rn-cheer { from { translate: 0 0; } to { translate: 0 -4px; } }
+@media (max-width: 700px) { .swimmer__cheer { font-size: 10.5px; padding: 4px 9px; top: -16px; } }
+@media (prefers-reduced-motion: reduce) { .swimmer__cheer { animation: none; } }
