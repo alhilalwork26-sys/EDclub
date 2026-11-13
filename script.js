@@ -11,20 +11,6 @@ const start = () => {
 };
 img.complete ? start() : img.addEventListener('load', start, { once: true });
 
-// Counter statistik
-const counter = document.querySelector('[data-count]');
-const target = +counter.dataset.count;
-const runCounter = () => {
-  const t0 = performance.now(), dur = 1800;
-  const tick = (t) => {
-    const p = Math.min((t - t0) / dur, 1);
-    counter.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
-    if (p < 1) requestAnimationFrame(tick);
-  };
-  requestAnimationFrame(tick);
-};
-setTimeout(runCounter, 2000);
-
 // Parallax halus mengikuti kursor
 if (!reduce && matchMedia('(hover: hover)').matches) {
   const hero = document.querySelector('.hero');

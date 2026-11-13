@@ -154,10 +154,6 @@ body:not(.is-loading) .reveal { opacity: 1; transform: none; }
 }
 .card--glass p { font-size: 15px; line-height: 1.5; }
 .card__foot { display: flex; align-items: center; justify-content: space-between; margin-top: 26px; }
-.stat { text-align: right; }
-.stat strong { font-family: 'Anton', sans-serif; font-size: 34px; font-weight: 400; line-height: 1; display: block; }
-.stat strong::after { content: '+'; color: var(--lime); }
-.stat span { font-size: 12px; opacity: .8; }
 
 .arrow {
   width: 44px; height: 44px; border-radius: 50%;
