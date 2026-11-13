@@ -1,16 +1,18 @@
-// Dua pendaki (Al dan Ode) menanjak mengikuti garis profil jalur
+// Tiga pendaki (Ode, Al, Huda) menanjak mengikuti garis profil jalur
 (() => {
   const box = document.querySelector('.gn-elev');
   const path = box?.querySelector('.path');
-  const al = box?.querySelector('.gn-hiker--al');
-  const ode = box?.querySelector('.gn-hiker--ode');
-  if (!path || !al || !ode) return;
+  const els = ['al', 'ode', 'huda'].map((k) => box?.querySelector(`.gn-hiker--${k}`));
+  if (!path || els.some((e) => !e)) return;
 
   const VW = 1000, VH = 300;
   const total = path.getTotalLength();
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const ease = (p) => 0.5 - Math.cos(Math.PI * p) / 2;
   const CLIMB = 13000, GAP = 1100, REST = 2400;
+  // Setiap pendaki berangkat berurutan dan berhenti sedikit lebih rendah dari yang di depan
+  const hikers = els.map((el, i) => ({ el, delay: i * GAP, top: 1 - i * 0.07 }));
+  const END = CLIMB + (hikers.length - 1) * GAP + REST;
 
   const place = (el, p) => {
     const L = Math.max(0, Math.min(1, p)) * total;
@@ -24,7 +26,7 @@
   };
 
   if (reduce) {
-    [al, ode].forEach((el, i) => { el.classList.add('is-on'); place(el, 0.62 - i * 0.1); });
+    hikers.forEach(({ el }, i) => { el.classList.add('is-on'); place(el, 0.62 - i * 0.1); });
     return;
   }
 
@@ -32,18 +34,17 @@
   const frame = (now) => {
     if (!running) return;
     const t = now - t0;
-    const pA = ease(Math.min(t / CLIMB, 1));
-    const pO = ease(Math.min(Math.max(t - GAP, 0) / CLIMB, 1)) * 0.93;
-    place(al, pA); place(ode, pO);
-    al.classList.toggle('is-top', pA >= 1);
-    ode.classList.toggle('is-top', pO >= 0.93);
-    if (t > CLIMB + GAP + REST) {
-      [al, ode].forEach((el) => el.classList.remove('is-on'));
-      if (t > CLIMB + GAP + REST + 700) { t0 = now; [al, ode].forEach((el) => el.classList.add('is-on')); }
-    } else if (t > 0) { al.classList.add('is-on'); if (t > GAP * 0.5) ode.classList.add('is-on'); }
+    hikers.forEach(({ el, delay, top }) => {
+      const p = ease(Math.min(Math.max(t - delay, 0) / CLIMB, 1)) * top;
+      place(el, p);
+      el.classList.toggle('is-top', p >= top);
+      if (t > END) el.classList.remove('is-on');
+      else if (t > delay * 0.5) el.classList.add('is-on');
+    });
+    if (t > END + 700) { t0 = now; }
     raf = requestAnimationFrame(frame);
   };
-  const start = () => { if (running) return; running = true; t0 = performance.now(); place(al, 0); place(ode, 0); raf = requestAnimationFrame(frame); };
+  const start = () => { if (running) return; running = true; t0 = performance.now(); hikers.forEach(({ el }) => place(el, 0)); raf = requestAnimationFrame(frame); };
   const stop = () => { running = false; cancelAnimationFrame(raf); };
   new IntersectionObserver((e) => (e[0].isIntersecting ? start() : stop()), { threshold: 0.2 }).observe(box);
 })();

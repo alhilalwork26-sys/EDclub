@@ -688,3 +688,5 @@ body:not(.is-loading) .lr-photo { transform: rotate(-4deg); opacity: 1; }
 /* Karakter main billiard sendirian */
 .bl-solo { margin-top: clamp(24px, 4vw, 48px); border-radius: 28px; overflow: hidden; border: 2px solid rgba(224,180,90,.55); box-shadow: 0 24px 60px rgba(0,0,0,.5); background: #0a1b14; }
 .bl-solo svg { display: block; width: 100%; height: auto; }
+
+.gn-hiker--huda .gn-hiker__name { background: #d3b8ff; } .gn-hiker--huda .gn-hiker__name::after { background: #d3b8ff; }
