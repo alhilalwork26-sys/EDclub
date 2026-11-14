@@ -7,6 +7,7 @@ const btnReplay = document.getElementById('mapReplay');
 const btnFollow = document.getElementById('mapFollow');
 const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+const STYLE_URL = 'https://tiles.openfreemap.org/styles/dark';
 const RUN_MS = 26000;
 const RAD = Math.PI / 180;
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
@@ -61,7 +62,7 @@ const AID_COLOR = { marshal: '#ff8a3d', water: '#3fa9ff', med: '#ff4d5e' };
 
 const map = new maplibregl.Map({
   container: 'map',
-  style: 'https://tiles.openfreemap.org/styles/dark',
+  style: STYLE_URL,
   bounds,
   fitBoundsOptions: overview,
   pitch: overview.pitch,
@@ -84,27 +85,45 @@ const startPin = new maplibregl.Marker({ element: pin('pin--finish', 'Start & Fi
 const line = (c) => ({ type: 'Feature', geometry: { type: 'LineString', coordinates: c } });
 let follow = true, running = false, raf = 0, smoothBearing = 0, started = false, curD = 0, capturing = false;
 
-// Gedung 3D, garis rute, dan jejak lari (dipakai peta utama dan peta pembuat gambar bagikan)
-const addMapLayers = (m) => {
+// Gedung 3D, garis rute neon, dan jejak lari (dipakai peta utama dan peta pembuat gambar bagikan)
+// Warna dasar peta: hijau-hitam dengan jalan yang lebih terang supaya rute dan kota terbaca
+const BASE_TINT = {
+  background: ['background-color', '#08120e'], water: ['fill-color', '#0a2230'], waterway: ['line-color', '#0c2a3a'],
+  landuse_residential: ['fill-color', '#0c1914'], landcover_wood: ['fill-color', '#0e2c1b'], landuse_park: ['fill-color', '#0e2c1b'],
+  highway_path: ['line-color', '#2b4a3a'], highway_minor: ['line-color', '#30443b'], highway_major_casing: ['line-color', 'rgba(212,255,63,0.16)'],
+  highway_major_inner: ['line-color', '#445a4f'], highway_major_subtle: ['line-color', '#445a4f'],
+};
+const addMapLayers = (m, { story = false } = {}) => {
+  Object.entries(BASE_TINT).forEach(([id, [prop, color]]) => { if (m.getLayer(id)) m.setPaintProperty(id, prop, color); });
+  if (story) m.getStyle().layers.filter((l) => l.type === 'symbol').forEach((l) => m.setLayoutProperty(l.id, 'visibility', 'none'));
   const firstSymbol = m.getStyle().layers.find((l) => l.type === 'symbol')?.id;
   m.addLayer({
     id: 'buildings-3d', type: 'fill-extrusion', source: 'openmaptiles', 'source-layer': 'building', minzoom: 13,
     paint: {
-      'fill-extrusion-color': ['interpolate', ['linear'], ['coalesce', ['get', 'render_height'], 8], 0, '#262b26', 40, '#3b443a', 120, '#566152'],
-      'fill-extrusion-height': ['coalesce', ['get', 'render_height'], 8],
-      'fill-extrusion-base': ['coalesce', ['get', 'render_min_height'], 0],
-      'fill-extrusion-opacity': 0.92,
+      // makin tinggi gedungnya, makin menyala hijau limau
+      'fill-extrusion-color': ['interpolate', ['linear'], ['coalesce', ['get', 'render_height'], 8],
+        0, '#1d2420', 20, '#2a382f', 50, '#3d5a3d', 100, '#6b8f35', 200, '#d4ff3f'],
+      // pada gambar story tinggi gedung dilebihkan supaya efek 3D terasa
+      'fill-extrusion-height': ['*', story ? 2.2 : 1, ['coalesce', ['get', 'render_height'], 8]],
+      'fill-extrusion-base': ['*', story ? 2.2 : 1, ['coalesce', ['get', 'render_min_height'], 0]],
+      'fill-extrusion-opacity': 0.94,
     },
   }, firstSymbol);
 
+  const k = story ? 1.7 : 1;
+  const L = { 'line-cap': 'round', 'line-join': 'round' };
   m.addSource('route', { type: 'geojson', data: line(coords) });
   m.addSource('run', { type: 'geojson', data: line([coords[0], coords[0]]) });
-  m.addLayer({ id: 'route-base', type: 'line', source: 'route', layout: { 'line-cap': 'round', 'line-join': 'round' },
-    paint: { 'line-color': '#ffffff', 'line-opacity': 0.28, 'line-width': 4, 'line-dasharray': [1, 2] } });
-  m.addLayer({ id: 'run-glow', type: 'line', source: 'run', layout: { 'line-cap': 'round', 'line-join': 'round' },
-    paint: { 'line-color': '#d4ff3f', 'line-opacity': 0.4, 'line-width': 16, 'line-blur': 10 } });
-  m.addLayer({ id: 'run-line', type: 'line', source: 'run', layout: { 'line-cap': 'round', 'line-join': 'round' },
-    paint: { 'line-color': '#d4ff3f', 'line-width': 5 } });
+  m.addLayer({ id: 'route-base', type: 'line', source: 'route', layout: L,
+    paint: { 'line-color': '#ffffff', 'line-opacity': 0.28, 'line-width': 4 * k, 'line-dasharray': [1, 2] } });
+  m.addLayer({ id: 'run-glow-wide', type: 'line', source: 'run', layout: L,
+    paint: { 'line-color': '#d4ff3f', 'line-opacity': 0.26, 'line-width': 38 * k, 'line-blur': 24 * k } });
+  m.addLayer({ id: 'run-glow', type: 'line', source: 'run', layout: L,
+    paint: { 'line-color': '#d4ff3f', 'line-opacity': 0.5, 'line-width': 16 * k, 'line-blur': 9 * k } });
+  m.addLayer({ id: 'run-line', type: 'line', source: 'run', layout: L,
+    paint: { 'line-color': '#d4ff3f', 'line-width': 5 * k } });
+  m.addLayer({ id: 'run-core', type: 'line', source: 'run', layout: L,
+    paint: { 'line-color': '#ffffff', 'line-opacity': 0.9, 'line-width': 1.7 * k } });
 };
 
 map.on('load', () => {
@@ -312,31 +331,186 @@ const grabLiveMap = () => new Promise((resolve) => {
   map.triggerRepaint();
 });
 
+/* ---------- Gambar Story Instagram (9:16, 1080×1920) ---------- */
+const STORY_W = 1080, STORY_H = 1920;
+
+const composeStory = async (src, project) => {
+  try {
+    await Promise.all([document.fonts.load('120px Anton'), document.fonts.load('800 26px Inter'), document.fonts.load('600 26px Inter'), document.fonts.load('500 26px Inter')]);
+  } catch (e) { /* tetap lanjut dengan font cadangan */ }
+  const W = STORY_W, H = STORY_H, m = 64;
+  const out = document.createElement('canvas');
+  out.width = W; out.height = H;
+  const c = out.getContext('2d');
+  c.imageSmoothingQuality = 'high';
+  c.drawImage(src, 0, 0, W, H);
+  const xy = (pos) => { const p = project(pos); return [p.x ?? p[0], p.y ?? p[1]]; };
+  const lime = '#d4ff3f', ink = '#0b0d0a';
+
+  // Vinyet dan bayangan atas-bawah supaya teks terbaca dan fokus ke rute
+  let g = c.createRadialGradient(W / 2, H * 0.5, H * 0.22, W / 2, H * 0.5, H * 0.72);
+  g.addColorStop(0, 'rgba(5,8,4,0)'); g.addColorStop(1, 'rgba(5,8,4,.5)');
+  c.fillStyle = g; c.fillRect(0, 0, W, H);
+  g = c.createLinearGradient(0, 0, 0, 760);
+  g.addColorStop(0, 'rgba(6,9,5,.96)'); g.addColorStop(.55, 'rgba(6,9,5,.78)'); g.addColorStop(1, 'rgba(6,9,5,0)');
+  c.fillStyle = g; c.fillRect(0, 0, W, 760);
+  g = c.createLinearGradient(0, H - 760, 0, H);
+  g.addColorStop(0, 'rgba(6,9,5,0)'); g.addColorStop(.45, 'rgba(6,9,5,.88)'); g.addColorStop(1, 'rgba(6,9,5,.98)');
+  c.fillStyle = g; c.fillRect(0, H - 760, W, 760);
+
+  // Panah arah lari sepanjang rute
+  for (let d = 380; d < total - 260; d += 640) {
+    const [x0, y0] = xy(pointAt(d).pos), [x1, y1] = xy(pointAt(d + 45).pos);
+    const a = Math.atan2(y1 - y0, x1 - x0);
+    c.save(); c.translate(x0, y0); c.rotate(a);
+    c.beginPath(); c.moveTo(15, 0); c.lineTo(-11, -13); c.lineTo(-5, 0); c.lineTo(-11, 13); c.closePath();
+    c.fillStyle = '#fff'; c.strokeStyle = 'rgba(8,10,6,.75)'; c.lineWidth = 3; c.stroke(); c.fill();
+    c.restore();
+  }
+
+  // Penanda tiap kilometer
+  c.textAlign = 'center'; c.textBaseline = 'middle';
+  for (let k = 1; k * 1000 < total - 400; k++) {
+    const [x, y] = xy(pointAt(k * 1000).pos);
+    const label = `${k} KM`;
+    c.font = '800 21px Inter, sans-serif';
+    const w = c.measureText(label).width + 30, h = 40;
+    roundRect(c, x - w / 2, y - h / 2, w, h, h / 2);
+    c.fillStyle = ink; c.fill(); c.lineWidth = 3; c.strokeStyle = lime; c.stroke();
+    c.fillStyle = '#fff'; c.fillText(label, x, y + 1);
+  }
+
+  // Start & finish dengan cincin berpendar
+  const [sx, sy] = xy(coords[0]);
+  [[54, .14], [36, .26]].forEach(([r, a]) => { c.beginPath(); c.arc(sx, sy, r, 0, 7); c.fillStyle = `rgba(212,255,63,${a})`; c.fill(); });
+  c.beginPath(); c.arc(sx, sy, 17, 0, 7); c.fillStyle = lime; c.fill(); c.lineWidth = 5; c.strokeStyle = ink; c.stroke();
+  c.font = '800 24px Inter, sans-serif';
+  const tag = 'START & FINISH';
+  const tw = c.measureText(tag).width + 36, th = 46;
+  const flip = sx + 40 + tw > W - 30;
+  const tx = flip ? sx - 40 - tw : sx + 40;
+  roundRect(c, tx, sy - th / 2 - 18, tw, th, th / 2); c.fillStyle = lime; c.fill();
+  c.fillStyle = ink; c.fillText(tag, tx + tw / 2, sy - 18 + 1);
+  c.font = '600 24px Inter, sans-serif'; c.fillStyle = '#fff';
+  c.fillText('Kedai Karimata', tx + tw / 2, sy + 22);
+
+  // Kepala: logo dan label
+  c.textAlign = 'left'; c.textBaseline = 'alphabetic';
+  c.font = '58px Anton, Impact, sans-serif';
+  c.fillStyle = '#fff'; c.fillText('ED', m, 330);
+  const edw = c.measureText('ED ').width;
+  c.fillStyle = lime; c.fillText('Club', m + edw, 330);
+  c.font = '700 22px Inter, sans-serif';
+  const chip = 'RUTE LARI 3D', cw = c.measureText(chip).width + 44, ch = 48;
+  roundRect(c, W - m - cw, 330 - 40, cw, ch, ch / 2); c.fillStyle = 'rgba(255,255,255,.14)'; c.fill();
+  c.lineWidth = 2; c.strokeStyle = 'rgba(255,255,255,.45)'; c.stroke();
+  c.fillStyle = '#fff'; c.textBaseline = 'middle'; c.fillText(chip, W - m - cw + 22, 330 - 40 + ch / 2 + 1);
+
+  c.textBaseline = 'alphabetic';
+  c.font = '700 28px Inter, sans-serif'; c.fillStyle = 'rgba(255,255,255,.9)';
+  c.fillText('SABTU  ·  20:00  ·  SURABAYA', m, 432);
+  c.font = '124px Anton, Impact, sans-serif'; c.fillStyle = '#fff';
+  c.fillText('ED FUN RUN', m, 565);
+  const fw = c.measureText('ED FUN RUN ').width;
+  c.fillStyle = lime; c.fillText('VOL. 1', m + fw, 565);
+
+  // Kartu statistik
+  const gap = 18, cardW = (W - m * 2 - gap * 2) / 3, cardY = 1318, cardH = 168;
+  const cards = [[`${Math.round(total / 1000)} KM`, 'SATU LOOP'], ['20:00', 'SABTU MALAM'], ['KARIMATA', 'START & FINISH']];
+  cards.forEach(([big, small], i) => {
+    const x = m + i * (cardW + gap);
+    roundRect(c, x, cardY, cardW, cardH, 30); c.fillStyle = 'rgba(255,255,255,.1)'; c.fill();
+    c.lineWidth = 2; c.strokeStyle = 'rgba(255,255,255,.3)'; c.stroke();
+    c.textAlign = 'center';
+    c.font = `${big.length > 6 ? 46 : 70}px Anton, Impact, sans-serif`; c.fillStyle = i === 0 ? lime : '#fff';
+    c.fillText(big, x + cardW / 2, cardY + 92);
+    c.font = '700 20px Inter, sans-serif'; c.fillStyle = 'rgba(255,255,255,.75)';
+    c.fillText(small, x + cardW / 2, cardY + 136);
+  });
+
+  // Ajakan dan alamat situs
+  const host = /^(localhost|127\.|\[::1\]|)$/.test(location.hostname) ? 'edsocialclub.vercel.app' : location.host;
+  roundRect(c, m, 1518, W - m * 2, 124, 62); c.fillStyle = lime; c.fill();
+  c.textAlign = 'center'; c.fillStyle = ink;
+  c.font = '800 36px Inter, sans-serif'; c.fillText('IKUT LARI BARENG KAMI  →', W / 2, 1578);
+  c.font = '600 26px Inter, sans-serif'; c.fillText(`${host}/fun-run`, W / 2, 1618);
+  return out;
+};
+
+// Peta khusus 1080×1920 di luar layar, lalu dibubuhi teks story
+const renderStory = async (cam, { pixelRatio = 1 } = {}) => {
+  const host = document.createElement('div');
+  host.style.cssText = `position:fixed;left:-4000px;top:0;width:${STORY_W}px;height:${STORY_H}px;pointer-events:none`;
+  document.body.appendChild(host);
+  const m = new maplibregl.Map({
+    container: host, style: STYLE_URL, center: cam.center, zoom: cam.zoom, pitch: cam.pitch, bearing: cam.bearing,
+    interactive: false, attributionControl: false, pixelRatio, preserveDrawingBuffer: true, antialias: true, fadeDuration: 0,
+  });
+  try {
+    await new Promise((r) => m.once('load', r));
+    if (cam.padding) m.jumpTo({ center: cam.center, zoom: cam.zoom, pitch: cam.pitch, bearing: cam.bearing, padding: cam.padding });
+    addMapLayers(m, { story: true });
+    m.getSource('run').setData(line(coords));
+    await Promise.race([new Promise((r) => m.once('idle', r)), new Promise((r) => setTimeout(r, 20000))]);
+    await new Promise((r) => setTimeout(r, 500));
+    return await composeStory(m.getCanvas(), (p) => m.project(p));
+  } finally {
+    m.remove(); host.remove();
+  }
+};
+const liveCamera = () => ({
+  center: map.getCenter(),
+  zoom: clamp(map.getZoom() + Math.log2(STORY_W / map.getCanvas().clientWidth), 13.4, 16.6),
+  pitch: map.getPitch(), bearing: map.getBearing(),
+});
+
 // Antarmuka bagikan (hanya jika halaman memuat panelnya)
 (() => {
   const modal = document.getElementById('shareModal');
   if (!modal) return;
   const $ = (id) => document.getElementById(id);
   const img = $('shareImg'), dl = $('shareDl'), nativeBtn = $('shareNative'), liveBtn = $('shareLive');
-  const urlInput = $('shareUrl'), toast = $('shareToast'), busy = $('shareBusy');
-  const defaultSrc = img.getAttribute('src');
-  let lastFocus = null, live = null, toastTimer = 0;
+  const urlInput = $('shareUrl'), toast = $('shareToast'), busy = $('shareBusy'), busyText = $('shareBusyText');
+  const tabs = [...modal.querySelectorAll('[data-fmt]')];
+  const FORMATS = {
+    story: { src: 'assets/images/rute-fun-run-story.jpg', file: 'ed-fun-run-story.jpg', title: 'Story Instagram', native: 'Bagikan ke Instagram Story', live: 'Buat story dari tampilan peta ini', alt: 'Gambar story Instagram 9:16 berisi peta 3D rute ED Fun Run Vol. 1, satu loop 5 km dari dan ke Kedai Karimata' },
+    wide: { src: 'assets/images/rute-fun-run-3d.jpg', file: SHARE_FILE, title: 'Gambar 3D & link lari', native: 'Bagikan…', live: 'Ambil tampilan peta saat ini', alt: 'Gambar 3D rute ED Fun Run Vol. 1: satu loop 5 km dari dan ke Kedai Karimata, Surabaya' },
+  };
+  let fmt = 'story', lastFocus = null, live = null, toastTimer = 0;
 
   const say = (msg) => {
     toast.textContent = msg; toast.classList.add('is-on');
-    clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('is-on'), 2200);
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('is-on'), 2600);
   };
-  const copy = async () => {
+  const copyQuiet = async () => {
     const url = shareUrl();
-    try { await navigator.clipboard.writeText(url); }
-    catch (e) { urlInput.value = url; urlInput.select(); document.execCommand('copy'); }
-    say('Link disalin');
+    try { await navigator.clipboard.writeText(url); return true; }
+    catch (e) { try { urlInput.value = url; urlInput.select(); return document.execCommand('copy'); } catch (e2) { return false; } }
   };
+  const copy = async () => { say((await copyQuiet()) ? 'Link disalin' : 'Tidak bisa menyalin, salin manual dari kolom'); };
   const wa = `https://wa.me/?text=${encodeURIComponent(`${SHARE_TEXT}\n${shareUrl()}`)}`;
   ['shareWa', 'shareWa2'].forEach((id) => { const a = $(id); if (a) a.href = wa; });
 
-  const open = () => {
+  const useDefault = () => {
+    if (live) URL.revokeObjectURL(live);
+    live = null;
+    const F = FORMATS[fmt];
+    img.src = F.src; img.alt = F.alt; dl.href = F.src; dl.setAttribute('download', F.file);
+    liveBtn.textContent = F.live;
+  };
+  const setFormat = (f) => {
+    fmt = f;
+    const F = FORMATS[f];
+    modal.classList.toggle('is-story', f === 'story');
+    tabs.forEach((t) => t.setAttribute('aria-selected', String(t.dataset.fmt === f)));
+    $('shareTitle').textContent = F.title;
+    nativeBtn.textContent = F.native;
+    $('shareSteps').hidden = f !== 'story';
+    useDefault();
+  };
+  const open = (f) => {
     lastFocus = document.activeElement;
+    setFormat(f);
     urlInput.value = shareUrl();
     modal.hidden = false;
     document.body.classList.add('modal-open');
@@ -347,42 +521,50 @@ const grabLiveMap = () => new Promise((resolve) => {
     document.body.classList.remove('modal-open');
     lastFocus?.focus?.();
   };
-  const useDefault = () => {
-    if (live) URL.revokeObjectURL(live); live = null;
-    img.src = defaultSrc; dl.href = defaultSrc;
-    liveBtn.textContent = 'Ambil tampilan peta saat ini';
-  };
 
-  $('shareOpen').addEventListener('click', open);
+  $('shareStoryOpen').addEventListener('click', () => open('story'));
+  $('shareOpen').addEventListener('click', () => open('wide'));
   $('shareCopy').addEventListener('click', copy);
   $('shareCopy2').addEventListener('click', copy);
+  tabs.forEach((t) => t.addEventListener('click', () => setFormat(t.dataset.fmt)));
   modal.querySelectorAll('[data-close]').forEach((el) => el.addEventListener('click', close));
   addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) close(); });
 
+  // Unduh gambar story sekaligus menyalin link untuk stiker Link
+  dl.addEventListener('click', async () => {
+    if (fmt === 'story') say((await copyQuiet()) ? 'Gambar diunduh. Link disalin untuk stiker Link' : 'Gambar diunduh');
+  });
+
   liveBtn.addEventListener('click', async () => {
     if (live) { useDefault(); return; }
+    const forStory = fmt === 'story';
+    busyText.textContent = forStory ? 'Membuat gambar story… butuh beberapa detik' : 'Menangkap tampilan peta…';
     busy.hidden = false; liveBtn.disabled = true;
     try {
-      const out = await grabLiveMap();
+      const out = forStory ? await renderStory(liveCamera(), { pixelRatio: matchMedia('(pointer: coarse)').matches ? 1 : 2 }) : await grabLiveMap();
       const blob = await new Promise((r) => out.toBlob(r, 'image/jpeg', 0.92));
+      if (forStory !== (fmt === 'story')) return;       // format diganti selama proses
       live = URL.createObjectURL(blob);
       img.src = live; dl.href = live;
       liveBtn.textContent = 'Pakai gambar bawaan';
-    } catch (e) { say('Gagal mengambil tampilan peta'); }
-    busy.hidden = true; liveBtn.disabled = false;
+    } catch (e) { say('Gagal membuat gambar, coba lagi'); }
+    finally { busy.hidden = true; liveBtn.disabled = false; }
   });
 
-  // Bagikan langsung ke aplikasi lain (HP): gambar beserta teks dan link
+  // Bagikan langsung ke aplikasi lain (HP): di sinilah Instagram Story muncul
   if (navigator.share) {
     nativeBtn.hidden = false;
     nativeBtn.addEventListener('click', async () => {
-      const url = shareUrl();
+      const url = shareUrl(), F = FORMATS[fmt];
       try {
+        if (fmt === 'story') await copyQuiet();
         const blob = await (await fetch(img.src)).blob();
-        const file = new File([blob], SHARE_FILE, { type: blob.type || 'image/jpeg' });
-        if (navigator.canShare?.({ files: [file] })) await navigator.share({ files: [file], title: 'ED Fun Run Vol. 1', text: `${SHARE_TEXT} ${url}` });
-        else await navigator.share({ title: 'ED Fun Run Vol. 1', text: SHARE_TEXT, url });
-      } catch (e) { if (e.name !== 'AbortError') say('Tidak bisa membagikan, coba salin link'); }
+        const file = new File([blob], F.file, { type: blob.type || 'image/jpeg' });
+        if (navigator.canShare?.({ files: [file] })) {
+          await navigator.share({ files: [file], title: 'ED Fun Run Vol. 1', text: fmt === 'story' ? SHARE_TEXT : `${SHARE_TEXT} ${url}` });
+          if (fmt === 'story') say('Link sudah disalin, tempel di stiker Link');
+        } else await navigator.share({ title: 'ED Fun Run Vol. 1', text: SHARE_TEXT, url });
+      } catch (e) { if (e.name !== 'AbortError') say('Tidak bisa membagikan, coba unduh gambarnya'); }
     });
   }
 })();

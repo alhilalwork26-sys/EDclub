@@ -143,10 +143,11 @@
         <div class="share__text">
           <span class="eyebrow-s">Bagikan rute</span>
           <h3>Ajak teman ikut lari<em>.</em></h3>
-          <p>Simpan gambar 3D rutenya, atau kirim link supaya temanmu bisa melihat dan memutar rutenya sendiri.</p>
+          <p>Buat Story Instagram dari peta 3D rutenya, simpan gambarnya, atau kirim link supaya temanmu bisa melihat dan memutar rutenya sendiri.</p>
         </div>
         <div class="share__actions">
-          <button class="share__btn share__btn--main" id="shareOpen" type="button">Gambar 3D <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
+          <button class="share__btn share__btn--main" id="shareStoryOpen" type="button">Story Instagram <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
+          <button class="share__btn" id="shareOpen" type="button">Gambar 3D</button>
           <button class="share__btn" id="shareCopy" type="button">Salin link</button>
           <a class="share__btn" id="shareWa" href="#" target="_blank" rel="noopener">WhatsApp</a>
         </div>
@@ -213,25 +214,39 @@
 
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
   <script src="assets/route-surabaya.js"></script>
-  <div class="share-modal" id="shareModal" role="dialog" aria-modal="true" aria-labelledby="shareTitle" hidden>
+  <div class="share-modal is-story" id="shareModal" role="dialog" aria-modal="true" aria-labelledby="shareTitle" hidden>
     <div class="share-modal__bg" data-close></div>
     <div class="share-modal__card">
       <button class="share-modal__x" type="button" data-close aria-label="Tutup">×</button>
       <span class="eyebrow-s">Bagikan rute</span>
-      <h3 id="shareTitle">Gambar 3D &amp; link lari</h3>
-      <figure class="share-modal__fig">
-        <img id="shareImg" src="assets/images/rute-fun-run-3d.jpg" alt="Gambar 3D rute ED Fun Run Vol. 1: satu loop 5 km dari dan ke Kedai Karimata, Surabaya" width="1200" height="630" loading="lazy" decoding="async">
-        <span class="share-modal__busy" id="shareBusy" hidden>Menangkap tampilan peta…</span>
-      </figure>
-      <div class="share-modal__row">
-        <a class="share__btn share__btn--main" id="shareDl" href="assets/images/rute-fun-run-3d.jpg" download="ed-fun-run-rute-3d.jpg">Unduh gambar</a>
-        <button class="share__btn" id="shareNative" type="button" hidden>Bagikan…</button>
-        <a class="share__btn" id="shareWa2" href="#" target="_blank" rel="noopener">WhatsApp</a>
-        <button class="share__btn" id="shareLive" type="button">Ambil tampilan peta saat ini</button>
+      <h3 id="shareTitle">Story Instagram</h3>
+      <div class="share-tabs" role="tablist" aria-label="Format gambar">
+        <button type="button" role="tab" data-fmt="story" aria-selected="true">Story 9:16</button>
+        <button type="button" role="tab" data-fmt="wide" aria-selected="false">Landscape</button>
       </div>
-      <div class="share-modal__link">
-        <label for="shareUrl">Link lari ke web</label>
-        <div><input id="shareUrl" type="text" readonly><button class="share__btn share__btn--main" id="shareCopy2" type="button">Salin</button></div>
+      <div class="share-modal__body">
+        <figure class="share-modal__fig">
+          <img id="shareImg" src="assets/images/rute-fun-run-story.jpg" alt="Gambar story Instagram 9:16 berisi peta 3D rute ED Fun Run Vol. 1, satu loop 5 km dari dan ke Kedai Karimata" loading="lazy" decoding="async">
+          <span class="share-modal__busy" id="shareBusy" hidden><span id="shareBusyText">Membuat gambar…</span></span>
+        </figure>
+        <div class="share-modal__side">
+          <div class="share-modal__row">
+            <button class="share__btn share__btn--main" id="shareNative" type="button" hidden>Bagikan ke Instagram Story</button>
+            <a class="share__btn share__btn--main" id="shareDl" href="assets/images/rute-fun-run-story.jpg" download="ed-fun-run-story.jpg">Unduh gambar</a>
+            <a class="share__btn" id="shareWa2" href="#" target="_blank" rel="noopener">WhatsApp</a>
+            <button class="share__btn" id="shareLive" type="button">Buat story dari tampilan peta ini</button>
+          </div>
+          <ol class="share-steps" id="shareSteps">
+            <li>Di HP, tekan <b>Bagikan ke Instagram Story</b> lalu pilih Instagram. Atau unduh gambarnya dulu.</li>
+            <li>Buka Instagram, buat Story baru, lalu pilih gambar tadi dari galeri.</li>
+            <li>Tambahkan stiker <b>Link</b> dan tempel link di bawah (sudah otomatis disalin).</li>
+          </ol>
+          <p class="share-note">Instagram tidak mengizinkan situs memposting langsung ke Story, jadi langkah terakhir dilakukan di aplikasinya.</p>
+          <div class="share-modal__link">
+            <label for="shareUrl">Link lari ke web</label>
+            <div><input id="shareUrl" type="text" readonly><button class="share__btn share__btn--main" id="shareCopy2" type="button">Salin</button></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

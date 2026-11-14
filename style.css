@@ -765,7 +765,7 @@ html.has-face-cursor input, html.has-face-cursor textarea { cursor: text !import
 .share-modal[hidden], .share__btn[hidden], .share-modal__busy[hidden] { display: none !important; }
 .share-modal { position: fixed; inset: 0; z-index: 9000; display: grid; place-items: center; padding: 16px; }
 .share-modal__bg { position: absolute; inset: 0; background: rgba(4,6,3,.78); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); animation: share-fade .3s ease both; }
-.share-modal__card { position: relative; width: min(100%, 780px); max-height: 94vh; overflow: auto; padding: clamp(20px, 3vw, 32px); border-radius: 28px; background: #12150f; border: 1px solid var(--glass-line); box-shadow: 0 40px 100px rgba(0,0,0,.6); animation: share-pop .45s var(--ease) both; }
+.share-modal__card { position: relative; width: min(100%, 780px); transition: width .4s var(--ease); max-height: 94vh; overflow: auto; padding: clamp(20px, 3vw, 32px); border-radius: 28px; background: #12150f; border: 1px solid var(--glass-line); box-shadow: 0 40px 100px rgba(0,0,0,.6); animation: share-pop .45s var(--ease) both; }
 .share-modal__card h3 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(28px, 4vw, 42px); line-height: 1; margin: 10px 0 18px; padding-right: 44px; }
 .share-modal__x { position: absolute; right: 16px; top: 14px; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; line-height: 1; color: var(--white); background: var(--glass); border: 1px solid var(--glass-line); transition: background .3s, color .3s; }
 .share-modal__x:hover { background: var(--lime); color: var(--ink); }
@@ -784,3 +784,26 @@ body.modal-open { overflow: hidden; }
 @keyframes share-pop { from { opacity: 0; transform: translateY(24px) scale(.96); } }
 @media (max-width: 560px) { .share__actions .share__btn, .share-modal__row .share__btn { flex: 1 1 calc(50% - 10px); padding-inline: 14px; } .share__actions .share__btn--main { flex-basis: 100%; } }
 @media (prefers-reduced-motion: reduce) { .share-modal__bg, .share-modal__card { animation: none; } }
+
+/* Story Instagram: pratinjau potret di kiri, aksi di kanan */
+.share-modal.is-story .share-modal__card { width: min(100%, 900px); }
+.share-tabs { display: inline-flex; gap: 4px; padding: 4px; margin: 0 0 18px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid var(--glass-line); }
+.share-tabs button { cursor: pointer; font: inherit; font-size: 13px; font-weight: 600; padding: 9px 18px; border-radius: 999px; color: var(--white); background: transparent; border: 0; transition: background .3s, color .3s; }
+.share-tabs button[aria-selected="true"] { background: var(--lime); color: var(--ink); }
+.share-modal__body { display: block; }
+.share-modal.is-story .share-modal__body { display: grid; grid-template-columns: minmax(0, 330px) minmax(0, 1fr); gap: 26px; align-items: start; }
+.share-modal.is-story .share-modal__fig { margin: 0; }
+.share-modal.is-story .share-modal__fig img { max-height: min(66vh, 640px); }
+.share-modal__side .share-modal__row { margin-bottom: 4px; }
+.share-modal__side .share-modal__link { margin-top: 18px; }
+.share-steps { list-style: none; counter-reset: st; margin: 18px 0 8px; display: grid; gap: 12px; }
+.share-steps li { counter-increment: st; position: relative; padding-left: 40px; font-size: 14px; line-height: 1.5; opacity: .88; }
+.share-steps li::before { content: counter(st); position: absolute; left: 0; top: -2px; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 13px; background: var(--lime); color: var(--ink); }
+.share-steps[hidden], .share-note[hidden] { display: none; }
+.share-note { font-size: 12px; line-height: 1.5; opacity: .55; }
+.share-modal:not(.is-story) .share-note { display: none; }
+@media (max-width: 760px) {
+  .share-modal.is-story .share-modal__body { grid-template-columns: 1fr; }
+  .share-modal.is-story .share-modal__fig { justify-self: center; }
+  .share-modal.is-story .share-modal__fig img { max-height: 54vh; }
+}
