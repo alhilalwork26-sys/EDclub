@@ -744,3 +744,43 @@ html.has-face-cursor input, html.has-face-cursor textarea { cursor: text !import
 @keyframes fc-wiggle { from { transform: rotate(-9deg); } to { transform: rotate(9deg); } }
 .fc-drop { position: fixed; z-index: 99998; width: 8px; height: 11px; pointer-events: none; border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%; background: radial-gradient(circle at 35% 30%, #fff, #8fd8ff 55%, #3aa7e6); box-shadow: 0 1px 3px rgba(0,60,110,.35); }
 @media (prefers-reduced-motion: reduce) { .fc-img { animation: none; } .fc-scale { transition: none; } }
+
+/* Bagikan rute */
+.share { display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; margin-top: 28px; padding: clamp(24px, 3.4vw, 40px); border-radius: 32px; border: 1px solid var(--glass-line); background: linear-gradient(120deg, rgba(212,255,63,.13), rgba(255,255,255,.04)); }
+.share__text { max-width: 34em; }
+.share__text h3 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(30px, 4vw, 52px); line-height: 1; margin: 12px 0 10px; }
+.share__text h3 em { font-style: normal; color: var(--lime); }
+.share__text p { font-size: 15px; line-height: 1.55; opacity: .75; }
+.share__actions, .share-modal__row { display: flex; gap: 10px; flex-wrap: wrap; }
+.share__btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; font: inherit; font-size: 14px; font-weight: 600;
+  padding: 13px 22px; border-radius: 999px; color: var(--white); background: transparent; border: 1px solid rgba(255,255,255,.55);
+  transition: background .3s, color .3s, border-color .3s, transform .4s var(--ease);
+}
+.share__btn:hover { background: var(--white); color: var(--ink); transform: translateY(-2px); }
+.share__btn--main { background: var(--lime); color: var(--ink); border-color: var(--lime); }
+.share__btn--main:hover { background: #e6ff7a; border-color: #e6ff7a; }
+.share__btn:disabled { opacity: .55; cursor: progress; transform: none; }
+.share__btn svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.share-modal[hidden], .share__btn[hidden], .share-modal__busy[hidden] { display: none !important; }
+.share-modal { position: fixed; inset: 0; z-index: 9000; display: grid; place-items: center; padding: 16px; }
+.share-modal__bg { position: absolute; inset: 0; background: rgba(4,6,3,.78); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); animation: share-fade .3s ease both; }
+.share-modal__card { position: relative; width: min(100%, 780px); max-height: 94vh; overflow: auto; padding: clamp(20px, 3vw, 32px); border-radius: 28px; background: #12150f; border: 1px solid var(--glass-line); box-shadow: 0 40px 100px rgba(0,0,0,.6); animation: share-pop .45s var(--ease) both; }
+.share-modal__card h3 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(28px, 4vw, 42px); line-height: 1; margin: 10px 0 18px; padding-right: 44px; }
+.share-modal__x { position: absolute; right: 16px; top: 14px; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 24px; line-height: 1; color: var(--white); background: var(--glass); border: 1px solid var(--glass-line); transition: background .3s, color .3s; }
+.share-modal__x:hover { background: var(--lime); color: var(--ink); }
+.share-modal__fig { position: relative; display: grid; place-items: center; margin: 0 0 16px; border-radius: 18px; overflow: hidden; background: #0b0d0a; }
+.share-modal__fig img { display: block; width: auto; height: auto; max-width: 100%; max-height: min(56vh, 520px); object-fit: contain; }
+.share-modal__busy { position: absolute; inset: 0; display: grid; place-items: center; font-size: 14px; font-weight: 600; background: rgba(8,10,6,.7); }
+.share-modal__link { margin-top: 18px; }
+.share-modal__link label { display: block; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; opacity: .55; margin-bottom: 8px; }
+.share-modal__link div { display: flex; gap: 10px; }
+.share-modal__link input { flex: 1; min-width: 0; padding: 13px 18px; border-radius: 999px; font: inherit; font-size: 13px; color: var(--white); background: rgba(255,255,255,.08); border: 1px solid var(--glass-line); outline: 2px solid transparent; }
+.share-modal__link input:focus { outline-color: var(--lime); }
+body.modal-open { overflow: hidden; }
+.share-toast { position: fixed; left: 50%; bottom: 28px; z-index: 9100; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; padding: 12px 22px; border-radius: 999px; font-size: 14px; font-weight: 600; background: var(--lime); color: var(--ink); box-shadow: 0 10px 30px rgba(0,0,0,.4); transition: opacity .3s, transform .4s var(--ease); }
+.share-toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+@keyframes share-fade { from { opacity: 0; } }
+@keyframes share-pop { from { opacity: 0; transform: translateY(24px) scale(.96); } }
+@media (max-width: 560px) { .share__actions .share__btn, .share-modal__row .share__btn { flex: 1 1 calc(50% - 10px); padding-inline: 14px; } .share__actions .share__btn--main { flex-basis: 100%; } }
+@media (prefers-reduced-motion: reduce) { .share-modal__bg, .share-modal__card { animation: none; } }
