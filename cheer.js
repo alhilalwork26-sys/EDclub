@@ -64,11 +64,12 @@
 
   /* ---------- API ---------- */
   let online = false;
-  const setOffline = () => {
-    online = false;
-    board.classList.add('is-offline');
-    $('brNote').hidden = false;
-    $('brForm').querySelectorAll('input, textarea, button').forEach((el) => { el.disabled = true; });
+  // Pindah antara aktif dan belum aktif
+  const setOnline = (on) => {
+    online = on;
+    board.classList.toggle('is-offline', !on);
+    $('brNote').hidden = on;
+    $('brForm').querySelectorAll('input, textarea, button').forEach((el) => { el.disabled = !on; });
   };
   const api = async (path, opts) => {
     const r = await fetch(path, { headers: { 'Content-Type': 'application/json' }, ...opts });
@@ -125,11 +126,10 @@
   const refresh = async (fromOthers = true) => {
     try {
       const [s, c] = await Promise.all([api('/api/cheer'), api('/api/comments?limit=30')]);
-      online = true;
-      board.classList.remove('is-offline');
+      if (!online) setOnline(true);
       applyStats(s, fromOthers);
       renderComments(c.items || []);
-    } catch (e) { if (e.offline || e instanceof TypeError) setOffline(); }
+    } catch (e) { if (e.offline || e instanceof TypeError) setOnline(false); }
   };
 
   /* ---------- Tombol semangat ---------- */
@@ -195,10 +195,11 @@
   });
 
   /* ---------- Mulai saat papan terlihat, perbarui berkala ---------- */
+  // Tetap mencoba saat belum aktif, supaya papan menyala sendiri begitu database tersambung
   let timer = 0, visible = false;
   const sync = () => {
     clearInterval(timer); timer = 0;
-    if (visible && !document.hidden && online) timer = setInterval(() => refresh(true), POLL_MS);
+    if (visible && !document.hidden) timer = setInterval(() => refresh(true), POLL_MS);
   };
   let started = false;
   new IntersectionObserver((entries) => {
