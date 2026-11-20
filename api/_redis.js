@@ -115,11 +115,10 @@ const readBody = (req) => {
   return req.body;
 };
 
-// Jawaban saat database belum tersambung. Hanya nama variabel (tanpa nilai) yang ditampilkan, untuk memudahkan pengecekan.
+// Jawaban saat database belum tersambung
 const notConfigured = (res) => res.status(503).json({
   error: 'not-configured',
   hint: 'Sambungkan database Upstash for Redis ke proyek ini (Production), lalu deploy ulang.',
-  seen: Object.keys(process.env).filter((n) => /REDIS|UPSTASH|^KV_|_KV_/.test(n)).sort(),
 });
 
 module.exports = { NS, configured, pipeline, limited, readBody, notConfigured };
