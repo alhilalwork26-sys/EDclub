@@ -4,10 +4,17 @@ const crypto = require('crypto');
 
 const NS = 'ed:bromo26';
 
-const env = () => ({
-  url: process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL,
-  token: process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN,
-});
+const env = () => {
+  const e = process.env;
+  let url = e.KV_REST_API_URL || e.UPSTASH_REDIS_REST_URL;
+  let token = e.KV_REST_API_TOKEN || e.UPSTASH_REDIS_REST_TOKEN;
+  if (!url || !token) {
+    // Integrasi Vercel bisa memakai awalan nama sendiri, mis. STORAGE_KV_REST_API_URL
+    const k = Object.keys(e).find((n) => /(REST_API|REDIS_REST)_URL$/.test(n) && e[n.replace(/URL$/, 'TOKEN')]);
+    if (k) { url = e[k]; token = e[k.replace(/URL$/, 'TOKEN')]; }
+  }
+  return { url, token };
+};
 
 const configured = () => { const { url, token } = env(); return Boolean(url && token); };
 
@@ -43,4 +50,7 @@ const readBody = (req) => {
   return req.body;
 };
 
-module.exports = { NS, configured, pipeline, limited, readBody };
+// Jawaban saat database belum tersambung
+const notConfigured = (res) => res.status(503).json({ error: 'not-configured', hint: 'Sambungkan database Upstash for Redis ke proyek ini (Production), lalu deploy ulang.' });
+
+module.exports = { NS, configured, pipeline, limited, readBody, notConfigured };

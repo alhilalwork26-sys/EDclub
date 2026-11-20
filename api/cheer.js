@@ -1,5 +1,5 @@
 // GET: statistik semangat untuk Ayah. POST: tambah satu semangat.
-const { NS, configured, pipeline, limited, readBody } = require('./_redis');
+const { NS, configured, pipeline, limited, readBody, notConfigured } = require('./_redis');
 
 const hourKey = (d) => `${NS}:cheer:h:${d.toISOString().slice(0, 13).replace(/[-T]/g, '')}`;
 const last24 = () => {
@@ -19,7 +19,7 @@ async function stats() {
 
 module.exports = async (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
-  if (!configured()) return res.status(503).json({ error: 'not-configured' });
+  if (!configured()) return notConfigured(res);
   try {
     if (req.method === 'GET') return res.status(200).json(await stats());
     if (req.method === 'POST') {

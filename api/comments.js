@@ -1,5 +1,5 @@
 // GET: komentar terbaru untuk Ayah. POST: kirim komentar baru.
-const { NS, configured, pipeline, limited, readBody } = require('./_redis');
+const { NS, configured, pipeline, limited, readBody, notConfigured } = require('./_redis');
 
 const KEEP = 200;   // komentar yang disimpan
 const clean = (s, max) => String(s || '').replace(/[\u0000-\u001f\u007f]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, max);
@@ -7,7 +7,7 @@ const parse = (s) => { try { return JSON.parse(s); } catch (e) { return null; } 
 
 module.exports = async (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
-  if (!configured()) return res.status(503).json({ error: 'not-configured' });
+  if (!configured()) return notConfigured(res);
   try {
     if (req.method === 'GET') {
       const limit = Math.min(50, Math.max(1, parseInt((req.query && req.query.limit) || '30', 10) || 30));
