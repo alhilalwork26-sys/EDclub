@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/ayah", "destination": "/bromo-marathon.html" },
+    { "source": "/bromo", "destination": "/bromo-marathon.html" }
+  ]
+}
