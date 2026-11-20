@@ -114,6 +114,41 @@
           <div class="br-bib__bars" aria-hidden="true"></div>
         </div>
       </div>
+
+      <div class="br-board" id="brBoard" data-reveal>
+        <div class="br-board__stats">
+          <div class="br-big">
+            <span class="br-live"><i></i>Langsung</span>
+            <div class="odo" id="brPeople" role="status">0</div>
+            <p>orang sudah menyemangati Ayah</p>
+          </div>
+          <div class="br-mini">
+            <div><b class="odo odo--sm" id="brTotal">0</b><span>total klik semangat</span></div>
+            <div><b class="odo odo--sm" id="brComments">0</b><span>pesan untuk Ayah</span></div>
+          </div>
+          <div class="br-meter">
+            <div class="br-meter__top"><span id="brLevel">Level 1 · Pemanasan</span><span id="brNext"></span></div>
+            <div class="br-meter__bar"><b id="brMeter"></b></div>
+          </div>
+          <div class="br-spark">
+            <span class="br-spark__title">Semangat 24 jam terakhir</span>
+            <div class="br-spark__bars" id="brSpark" aria-hidden="true"></div>
+            <div class="br-spark__axis"><span>24 jam lalu</span><span>sekarang</span></div>
+          </div>
+        </div>
+        <div class="br-comments">
+          <h3>Pesan untuk Ayah</h3>
+          <form class="br-form" id="brForm" novalidate>
+            <input name="name" type="text" maxlength="40" placeholder="Nama kamu" autocomplete="nickname" aria-label="Nama kamu">
+            <textarea name="message" maxlength="280" rows="3" placeholder="Tulis semangat untuk Ayah…" aria-label="Pesan untuk Ayah"></textarea>
+            <div class="br-form__foot"><span id="brCount">0/280</span><button class="sp-btn" type="submit">Kirim pesan</button></div>
+            <p class="br-form__msg" id="brFormMsg" role="status" hidden></p>
+          </form>
+          <p class="br-board__note" id="brNote" hidden>Papan semangat segera aktif. Angka dan pesan akan muncul di sini.</p>
+          <ul class="br-list" id="brList"></ul>
+          <p class="br-empty" id="brEmpty">Belum ada pesan. Jadilah yang pertama menyemangati Ayah!</p>
+        </div>
+      </div>
     </section>
 
     <section class="br-sec" id="rute">
@@ -229,5 +264,6 @@
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
   <script src="assets/route-bromo.js"></script>
   <script src="bromo.js"></script>
+  <script src="cheer.js"></script>
 </body>
 </html>
