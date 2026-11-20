@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bromo Marathon 2026 · Half Marathon 21K — ED Club</title>
+  <meta name="description" content="Bromo Marathon 2026 Half Marathon 21K: Minggu 6 September 2026, start 06:30 WIB di Plataran Bromo. Lihat rute 3D dan kenalan dengan Ayah, wakil ED Club.">
+  <meta name="theme-color" content="#12080b">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:site_name" content="ED Club">
+  <meta property="og:title" content="Bromo Marathon 2026 · Half Marathon 21K bersama ED Club">
+  <meta property="og:description" content="Rute 3D 20,91 km di kaki Gunung Bromo dan kenalan dengan Ayah, wakil ED Club.">
+  <meta property="og:url" content="https://edsocialclub.vercel.app/bromo-marathon.html">
+  <meta property="og:image" content="https://edsocialclub.vercel.app/assets/images/hero.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="sport.css">
+  <link rel="stylesheet" href="bromo.css">
+</head>
+<body class="is-loading sp sp-bromo">
+
+  <div class="loader" aria-hidden="true">
+    <span class="loader__word"><span>English Day</span><span>Social Club<i>.</i></span></span>
+  </div>
+
+  <header class="nav">
+    <a class="logo" href="index.html#home" aria-label="ED Club">ED<span>Club</span></a>
+    <nav class="pill" aria-label="Utama">
+      <a class="pill__link" href="index.html#home">Home</a>
+      <a class="pill__link" href="index.html#games">Games</a>
+      <a class="pill__link" href="index.html#about">Community</a>
+      <a class="pill__link is-active" href="index.html#events">Events</a>
+      <a class="pill__link" href="index.html#join">Join</a>
+    </nav>
+    <button class="burger" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </header>
+
+  <div class="menu" id="menu">
+    <nav aria-label="Menu mobile">
+      <a href="index.html#home" style="--i:0">Home</a>
+      <a href="index.html#games" style="--i:1">Games</a>
+      <a href="index.html#about" style="--i:2">Community</a>
+      <a href="index.html#events" style="--i:3">Events</a>
+      <a href="index.html#join" style="--i:4">Join</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="br-hero">
+      <i class="br-stars" aria-hidden="true"></i>
+      <i class="br-sun" aria-hidden="true" data-parallax=".18"></i>
+      <img class="br-logo" src="assets/images/logo-bromar.svg" alt="Logo Bromo Marathon 2026, didukung Bank Jatim" width="534" height="464">
+      <div class="br-hero__text">
+        <p class="sp-eyebrow reveal" style="--d:.9s">Event lari · Pasuruan, Jawa Timur</p>
+        <h1 class="br-title" aria-label="Bromo Marathon 2026"><span class="line"><span class="line__in" style="--d:1s">Bromo</span></span><span class="line"><span class="line__in" style="--d:1.12s">Marathon <em>2026</em></span></span></h1>
+        <div class="br-badges reveal" style="--d:1.4s"><span class="br-badge br-badge--hot">Half Marathon 21K</span><span class="br-badge">Minggu, 6 September 2026</span><span class="br-badge">Start 06:30 WIB</span></div>
+        <p class="sp-lead reveal" style="--d:1.55s">Setengah maraton di kaki Gunung Bromo, di ketinggian 1.783 sampai 2.468 meter. ED Club mengirim satu wakil ke garis start: Ayah.</p>
+        <div class="sp-actions reveal" style="--d:1.75s">
+          <a class="sp-btn" href="#rute">Lihat rute 3D <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="sp-back" href="#ayah">Kenalan dengan Ayah</a>
+          <a class="sp-back" href="index.html#events">← Semua event</a>
+        </div>
+      </div>
+      <i class="br-mist br-mist--1" aria-hidden="true"></i><i class="br-mist br-mist--2" aria-hidden="true"></i>
+      <svg class="br-mtn" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <path class="m-far" d="M0 330 L80 300 L170 340 L260 290 L360 335 L470 280 L560 330 L680 300 L790 345 L900 295 L1010 340 L1120 300 L1240 335 L1340 305 L1440 330 V520 H0Z"/>
+        <path class="m-semeru" d="M960 520 L1080 310 L1140 215 L1185 165 L1215 152 L1250 190 L1305 292 L1440 390 V520Z"/>
+        <g><circle class="puff s" cx="1216" cy="150" r="22"/><circle class="puff s" cx="1216" cy="150" r="22"/><circle class="puff s" cx="1216" cy="150" r="22"/><circle class="puff s" cx="1216" cy="150" r="22"/><circle class="puff s" cx="1216" cy="150" r="22"/></g>
+        <path class="m-mid" d="M410 520 L520 335 L560 305 L600 335 L710 520Z"/>
+        <path class="m-mid" d="M640 520 L755 368 L790 350 L852 350 L885 368 L990 520Z"/>
+        <ellipse cx="821" cy="350" rx="31" ry="7" fill="#12080b"/>
+        <g><circle class="puff" cx="821" cy="344" r="18"/><circle class="puff" cx="821" cy="344" r="18"/><circle class="puff" cx="821" cy="344" r="18"/><circle class="puff" cx="821" cy="344" r="18"/><circle class="puff" cx="821" cy="344" r="18"/></g>
+        <path class="m-near" d="M0 470 C 200 428, 380 480, 600 450 S 1000 438, 1200 470 S 1380 448, 1440 460 V520 H0Z"/>
+        <path class="m-front" d="M0 505 C 240 478, 460 512, 720 492 S 1180 488, 1440 504 V520 H0Z"/>
+      </svg>
+    </section>
+
+    <section class="br-sec" id="info">
+      <span class="sp-eyebrow" data-reveal>Info lomba</span>
+      <h2 class="sp-h2" data-reveal>Satu pagi,<br>21 kilometer<em style="color:var(--ember);font-style:normal">.</em></h2>
+      <div class="br-facts">
+        <article class="br-fact" data-reveal style="--d:0.00s"><small>Tanggal</small><b>6 Sep 2026</b><span>Minggu · Edisi ke-13 International Bromo Marathon</span></article>
+        <article class="br-fact" data-reveal style="--d:0.08s"><small>Start</small><b>06:30</b><span>WIB · Plataran Bromo</span></article>
+        <article class="br-fact" data-reveal style="--d:0.16s"><small>Jarak</small><b>20,91 km</b><span>Half Marathon 21K</span></article>
+        <article class="br-fact" data-reveal style="--d:0.24s"><small>Cut-off</small><b>7 jam</b><span>Batas waktu menyelesaikan lomba</span></article>
+      </div>
+    </section>
+
+    <section class="br-sec" id="ayah">
+      <span class="sp-eyebrow" data-reveal>Perwakilan ED Club</span>
+      <h2 class="sp-h2" data-reveal>Kenalan dengan<br>Ayah<em style="color:var(--ember);font-style:normal">.</em></h2>
+      <div class="br-profile__grid">
+        <article class="br-card" data-reveal>
+          <div class="br-avatar" aria-hidden="true"><span>A</span><i class="ring"></i><b>ED</b></div>
+          <div class="br-card__body">
+            <span class="tag tag--glass" style="position:static">Wakil ED Club</span>
+            <h3>Ayah</h3>
+            <p>Pelari yang membawa nama English Day Social Club ke Bromo Marathon 2026, di kategori Half Marathon 21K.</p>
+            <ul class="br-chips"><li>ED Club</li><li>21K · 20,91 km</li><li>Bromo, Pasuruan</li></ul>
+            <button class="sp-btn" id="brCheer" type="button">Semangat Ayah! 🎉</button>
+          </div>
+        </article>
+        <div class="br-bib" data-reveal style="--d:.15s" aria-label="Kartu nomor dada Ayah, Half Marathon 21K">
+          <i></i><i></i><i></i><i></i>
+          <div class="br-bib__top"><span>BROMO MARATHON 2026</span><em>ED CLUB</em></div>
+          <div class="br-bib__no">21K<small>HALF MARATHON</small></div>
+          <div class="br-bib__name"><strong>Ayah</strong><span>English Day Social Club</span></div>
+          <div class="br-bib__bars" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="br-sec" id="rute">
+      <div class="br-head" data-reveal>
+        <div>
+          <span class="sp-eyebrow">Peta 3D</span>
+          <h2 class="sp-h2">Naik ke 2.468 meter,<br>turun ke Wonokitri<em style="color:var(--ember);font-style:normal">.</em></h2>
+        </div>
+        <dl class="br-stats">
+          <div><dt>Jarak</dt><dd>20,91 km</dd></div>
+          <div><dt>Tertinggi</dt><dd>2.468 m</dd></div>
+          <div><dt>Terendah</dt><dd>1.783 m</dd></div>
+          <div><dt>Tanjakan</dt><dd>±980 m</dd></div>
+        </dl>
+      </div>
+
+      <div class="br-frame" id="brFrame" data-reveal>
+        <div id="brMap" aria-label="Peta 3D rute Bromo Marathon 2026 Half Marathon 21K"></div>
+        <div class="br-hud" aria-live="off">
+          <div><small>Jarak</small><strong><span id="brKm">0,0</span><em>km</em></strong></div>
+          <div><small>Ketinggian</small><strong class="hot"><span id="brEle">1.840</span><em>m</em></strong></div>
+          <div><small>Kemiringan</small><strong><span id="brGrade">0</span><em>%</em></strong></div>
+          <i class="br-hud__bar"><b id="brBar"></b></i>
+        </div>
+        <div class="br-ctrl">
+          <button class="br-btn" id="brPlay" type="button">Jeda</button>
+          <button class="br-btn" id="brFollow" type="button" aria-pressed="true">Kamera ikuti pelari</button>
+          <button class="br-btn" id="brOverview" type="button">Lihat seluruh rute</button>
+        </div>
+      </div>
+
+      <div class="br-chart" id="brChart" data-reveal>
+        <span class="br-chart__title">Profil ketinggian</span>
+        <div class="br-chart__plot" id="brPlot"></div>
+      </div>
+      <p class="br-hint">Geser grafik di atas untuk melompat ke titik mana pun di rute.</p>
+    </section>
+
+    <section class="br-sec">
+      <span class="sp-eyebrow" data-reveal>Gambaran rute</span>
+      <h2 class="sp-h2" data-reveal>Dari turunan ke tanjakan,<br>lalu pulang<em style="color:var(--ember);font-style:normal">.</em></h2>
+      <ol class="br-steps">
+        <li class="br-step" style="--i:0"><b>01</b><h3>Start: Plataran Bromo</h3><p>Lomba dimulai pukul 06:30 WIB dan langsung turun dari ketinggian sekitar Plataran Bromo.</p></li>
+        <li class="br-step" style="--i:1"><b>02</b><h3>Tanjakan: Pinggiran Ngadiwono</h3><p>Rute mulai menanjak melewati pinggiran Ngadiwono.</p></li>
+        <li class="br-step" style="--i:2"><b>03</b><h3>Jalur batu: Menuju Pandansari</h3><p>Berlanjut di jalan berbatu yang menanjak ke arah Pandansari.</p></li>
+        <li class="br-step" style="--i:3"><b>04</b><h3>Hutan: Dekat Mororejo</h3><p>Sekitar 3 km menembus jalur hutan, bagian paling teknis dari rute.</p></li>
+        <li class="br-step" style="--i:4"><b>05</b><h3>Finish: Wonokitri</h3><p>Kembali ke aspal dan jalan desa, lalu masuk Wonokitri tempat garis finish menunggu.</p></li>
+      </ol>
+      <p class="br-note" data-reveal>Rute di peta ini berasal dari tautan rute 21K di situs resmi Bromo Marathon (20,91 km). Jadwal, titik start dan finish, serta aturan lomba bisa berubah, jadi selalu cek situs resmi dan panduan peserta.</p>
+    </section>
+
+    <section class="br-sec">
+      <span class="sp-eyebrow" data-reveal>Wajib dibawa</span>
+      <h2 class="sp-h2" data-reveal>Perlengkapan<br>pelari<em style="color:var(--ember);font-style:normal">.</em></h2>
+      <ul class="gn-gear br-gear" data-reveal>
+        <li style="--i:0"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Rompi atau sabuk lari</li>
+        <li style="--i:1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Minimal 1 liter air (soft flask atau bladder)</li>
+        <li style="--i:2"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Camilan atau energy bar</li>
+        <li style="--i:3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Ponsel dengan berkas GPX</li>
+        <li style="--i:4"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Obat pribadi</li>
+        <li style="--i:5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Jas hujan anti air, atau windbreaker plus jas hujan tipis</li>
+        <li style="--i:6"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Peluit darurat</li>
+        <li style="--i:7"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Buff atau penutup leher</li>
+        <li style="--i:8"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Nomor dada (BIB)</li>
+        <li style="--i:9"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Kartu identitas (KTP)</li>
+      </ul>
+      <div class="br-links" data-reveal>
+        <a href="https://www.bromomarathon.com/the-race/21k-half-marathon" target="_blank" rel="noopener">Situs resmi Bromo Marathon <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="https://www.bromomarathon.com/registration" target="_blank" rel="noopener">Pendaftaran</a>
+        <a href="https://www.mapmyrun.com/routes/view/5883912883" target="_blank" rel="noopener">Rute di MapMyRun</a>
+      </div>
+    </section>
+
+    <section class="sp-end">
+      <a class="sp-end__join" href="index.html#join" data-reveal style="background:var(--acc);color:var(--on-acc)"><small>Mau lari bareng?</small><strong>Gabung<br>ED Club</strong><i>→</i></a>
+      <a class="sp-end__next" href="fun-run.html" data-reveal style="--d:.1s;background:var(--card);color:var(--fg);border:1px solid var(--line)"><small>Event berikutnya</small><strong>ED Fun Run Vol. 1</strong><i>→</i></a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="logo" href="index.html#home" aria-label="ED Club">ED<span>Club</span></a>
+        <p>All Games.<br>One Community.</p>
+      </div>
+      <nav class="footer__col" aria-label="Jelajahi">
+        <h4>Explore</h4>
+        <a href="index.html#about">Community</a>
+        <a href="index.html#games">Games</a>
+        <a href="index.html#events">Events</a>
+        <a href="index.html#join">Join</a>
+      </nav>
+      <nav class="footer__col" aria-label="Sosial media">
+        <h4>Social</h4>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">WhatsApp</a>
+      </nav>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@edclub.id">hello@edclub.id</a>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <span>© 2026 ED Club</span>
+      <a href="#" class="totop">Kembali ke atas ↑</a>
+    </div>
+  </footer>
+
+  <script src="cursor.js"></script>
+  <script src="nav.js"></script>
+  <script src="sport.js"></script>
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="assets/route-bromo.js"></script>
+  <script src="bromo.js"></script>
+</body>
+</html>
